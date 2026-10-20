@@ -36,7 +36,6 @@ export default function App() {
       return 'en';
     }
   });
-  const [activeFilter, setActiveFilter] = useState('all');
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   // Study Plan Matcher state
@@ -60,11 +59,6 @@ export default function App() {
   const toggleLanguage = () => {
     setLang((prev) => (prev === 'en' ? 'ar' : 'en'));
   };
-
-  const filteredCourses =
-    activeFilter === 'all'
-      ? t.courses.items
-      : t.courses.items.filter((course) => course.category === activeFilter);
 
   const handleMatcherSubmit = (e) => {
     e.preventDefault();
@@ -427,7 +421,7 @@ export default function App() {
       {/* English Courses Section */}
       <section id="courses" className="py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center max-w-3xl mx-auto mb-10">
+          <div className="text-center max-w-3xl mx-auto mb-14">
             <span className="inline-block px-3.5 py-1 rounded-full bg-[#FDF6E7] text-[#B98519] font-extrabold text-xs tracking-wider uppercase mb-3">
               {t.courses.tag}
             </span>
@@ -437,69 +431,103 @@ export default function App() {
             <p className="mt-3 text-slate-600 text-base sm:text-lg">{t.courses.subtitle}</p>
           </div>
 
-          {/* Filter Pills */}
-          <div className="flex flex-wrap items-center justify-center gap-2.5 mb-12">
-            {[
-              { id: 'all', label: t.courses.filters.all },
-              { id: 'speaking', label: t.courses.filters.speaking },
-              { id: 'career', label: t.courses.filters.career },
-              { id: 'youth', label: t.courses.filters.youth },
-            ].map((tab) => (
-              <button
-                key={tab.id}
-                type="button"
-                onClick={() => setActiveFilter(tab.id)}
-                className={`px-5 py-2.5 rounded-full text-sm font-bold transition-all cursor-pointer ${
-                  activeFilter === tab.id
-                    ? 'bg-[#0B2239] text-white shadow-md'
-                    : 'bg-slate-100 text-slate-700 hover:bg-[#FDF6E7] hover:text-[#0B2239]'
-                }`}
-              >
-                {tab.label}
-              </button>
-            ))}
-          </div>
-
           {/* Course Cards Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-7">
-            {filteredCourses.map((course) => (
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 items-stretch">
+            {t.courses.items.map((course) => (
               <article
                 key={course.id}
-                className="bg-white rounded-3xl p-7 border border-slate-200 hover:border-[#D89F26] shadow-sm hover:shadow-xl transition-all flex flex-col justify-between group"
+                className={`relative rounded-3xl p-7 sm:p-8 transition-all flex flex-col justify-between ${
+                  course.featured
+                    ? 'bg-gradient-to-b from-[#FFFDF8] to-white border-2 border-[#D89F26] shadow-xl shadow-[#D89F26]/10'
+                    : 'bg-white border-2 border-slate-200 hover:border-[#D89F26] shadow-md hover:shadow-xl'
+                }`}
               >
-                <div>
-                  <div className="flex items-center justify-between gap-2 mb-4">
-                    <span className="px-3 py-1 rounded-lg bg-[#0B2239]/5 text-[#0B2239] font-extrabold text-xs">
-                      {course.level}
+                {course.featured && (
+                  <div className="absolute -top-4 inset-x-0 flex justify-center">
+                    <span className="px-4 py-1 rounded-full bg-[#D89F26] text-white font-extrabold text-xs tracking-wide shadow-md">
+                      ⭐ {t.courses.bestValueBadge}
                     </span>
-                    <span className="px-3 py-1 rounded-lg bg-[#FDF6E7] text-[#B98519] font-bold text-xs">
-                      {t.courses.modeBadge}
+                  </div>
+                )}
+
+                <div>
+                  <div className="flex items-center justify-between gap-2 mb-4 pt-1">
+                    <span className="px-3 py-1 rounded-lg bg-[#0B2239]/5 text-[#0B2239] font-extrabold text-xs">
+                      {course.badge}
+                    </span>
+                    <span className="px-3 py-1 rounded-lg bg-[#FDF6E7] text-[#B98519] font-extrabold text-xs">
+                      ⏱️ {course.duration}
                     </span>
                   </div>
 
-                  <h3 className="text-xl font-extrabold text-[#0B2239] group-hover:text-[#D89F26] transition-colors mb-3">
+                  <h3 className="text-2xl font-extrabold text-[#0B2239] mb-3">
                     {course.title}
                   </h3>
 
                   <p className="text-slate-600 text-sm leading-relaxed mb-6">{course.desc}</p>
-                </div>
 
-                <div>
-                  <div className="flex items-center justify-between text-xs font-bold text-slate-500 py-3 px-4 rounded-xl bg-slate-50 mb-5">
-                    <span>⏱️ {course.duration}</span>
-                    <span>🎓 {course.highlight}</span>
+                  {/* Pricing Box: Offline vs Online */}
+                  <div className="grid grid-cols-2 gap-3 mb-6">
+                    <div className="rounded-2xl bg-slate-50 border border-slate-200/80 p-3.5 text-center">
+                      <span className="block text-[11px] font-bold uppercase tracking-wider text-slate-500 mb-1">
+                        {t.courses.offlinePriceLabel}
+                      </span>
+                      {course.offlineOldPrice && (
+                        <span className="block text-xs text-slate-400 line-through font-semibold">
+                          {course.offlineOldPrice} {t.courses.currency}
+                        </span>
+                      )}
+                      <span className="text-xl sm:text-2xl font-extrabold text-[#0B2239]">
+                        {course.offlinePrice}
+                      </span>{' '}
+                      <span className="text-xs font-bold text-slate-600">
+                        {t.courses.currency}
+                      </span>
+                    </div>
+
+                    <div className="rounded-2xl bg-[#FDF6E7]/80 border border-[#D89F26]/40 p-3.5 text-center">
+                      <span className="block text-[11px] font-bold uppercase tracking-wider text-[#B98519] mb-1">
+                        {t.courses.onlinePriceLabel}
+                      </span>
+                      {course.onlineOldPrice && (
+                        <span className="block text-xs text-slate-400 line-through font-semibold">
+                          {course.onlineOldPrice} {t.courses.currency}
+                        </span>
+                      )}
+                      <span className="text-xl sm:text-2xl font-extrabold text-[#D89F26]">
+                        {course.onlinePrice}
+                      </span>{' '}
+                      <span className="text-xs font-bold text-[#B98519]">
+                        {t.courses.currency}
+                      </span>
+                    </div>
                   </div>
 
-                  <a
-                    href={buildWhatsAppUrl(course.waText)}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="w-full inline-flex items-center justify-center gap-2 py-3.5 px-4 rounded-xl border-2 border-[#0B2239] text-[#0B2239] hover:bg-[#0B2239] hover:text-white font-bold text-sm transition-all"
-                  >
-                    <WhatsAppIcon className="w-4 h-4 text-[#25D366]" />
-                    <span>{t.courses.inquireBtn}</span>
-                  </a>
+                  <ul className="space-y-2.5 mb-7">
+                    {course.features.map((feat, i) => (
+                      <li key={i} className="flex items-start gap-2.5 text-sm text-slate-700 font-medium">
+                        <span className="w-5 h-5 rounded-full bg-[#0B2239]/10 text-[#0B2239] flex items-center justify-center text-xs font-bold shrink-0 mt-0.5">
+                          ✓
+                        </span>
+                        <span>{feat}</span>
+                      </li>
+                    ))}
+                  </ul>
                 </div>
+
+                <a
+                  href={buildWhatsAppUrl(course.waText)}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={`w-full inline-flex items-center justify-center gap-2 py-4 px-4 rounded-2xl font-bold text-sm transition-all shadow-md ${
+                    course.featured
+                      ? 'bg-[#D89F26] hover:bg-[#B98519] text-white'
+                      : 'bg-[#0B2239] hover:bg-[#133454] text-white'
+                  }`}
+                >
+                  <WhatsAppIcon className="w-4 h-4 text-[#25D366]" />
+                  <span>{t.courses.inquireBtn}</span>
+                </a>
               </article>
             ))}
           </div>
@@ -566,7 +594,7 @@ export default function App() {
                   >
                     {t.courses.items.map((c, idx) => (
                       <option key={c.id} value={idx}>
-                        {c.title}
+                        {c.title} ({c.duration} • {c.offlinePrice} / {c.onlinePrice} {t.courses.currency})
                       </option>
                     ))}
                   </select>
