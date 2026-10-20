@@ -162,7 +162,6 @@ export const translations = {
       modes: [
         'Offline at Loran Campus (Alexandria)',
         'Live Online',
-        'Both / Flexible',
       ],
       goalLabel: 'Choose Your Course / Bundle',
       levelLabel: 'Estimated Current Level',
@@ -382,7 +381,6 @@ export const translations = {
       modes: [
         'أوفلاين (حضوري في فرع لوران - الإسكندرية)',
         'أونلاين (بث مباشر تفاعلي)',
-        'مرن (أونلاين أو أوفلاين)',
       ],
       goalLabel: 'اختر الكورس أو الباقة',
       levelLabel: 'مستواك الحالي التقريبي',
