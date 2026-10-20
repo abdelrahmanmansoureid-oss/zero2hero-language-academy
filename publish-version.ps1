@@ -61,6 +61,8 @@ $filesToUpload = @(
     "publish-version.ps1",
     "logo.png",
     "public/logo.png",
+    "logo-full.png",
+    "public/logo-full.png",
     "src/main.jsx",
     "src/index.css",
     "src/translations.js",

@@ -299,7 +299,7 @@ export default function App() {
                 </div>
 
                 <img
-                  src="./logo.png"
+                  src="./logo-full.png"
                   alt="ZERO2HERO Language Academy Official Logo"
                   className="w-full h-auto max-h-80 object-contain mx-auto my-4"
                 />
