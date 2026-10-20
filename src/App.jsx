@@ -951,9 +951,10 @@ export default function App() {
                     href={FACEBOOK_URL}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="font-bold text-[#1877F2] hover:underline"
+                    className="inline-flex items-center gap-2 font-bold text-[#1877F2] hover:underline"
                   >
-                    📘 {t.topbarFb}
+                    <FacebookIcon className="w-4 h-4 text-[#1877F2] shrink-0" />
+                    <span>{t.topbarFb}</span>
                   </a>
                 </li>
               </ul>
