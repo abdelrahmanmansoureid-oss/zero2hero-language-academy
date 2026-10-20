@@ -244,21 +244,21 @@ export default function App() {
         )}
       </header>
 
-      {/* Limited-Time Session Countdown Bar Under Navbar */}
-      <div className="bg-gradient-to-r from-[#FDF6E7] via-[#FFF9EC] to-[#FDF6E7] border-b border-[#D89F26]/30 py-3 px-4 shadow-sm">
-        <div className="max-w-7xl mx-auto flex flex-wrap items-center justify-center sm:justify-between gap-3 text-center sm:text-start">
-          <div className="flex flex-wrap items-center justify-center gap-2.5">
-            <span className="inline-flex items-center px-3 py-1 rounded-full bg-[#D89F26] text-white text-xs font-extrabold tracking-wide shadow-sm">
+      {/* Limited-Time Session Countdown Bar Under Navbar (Dark Mode Banner) */}
+      <div className="bg-[#0B2239] text-white border-b border-[#D89F26]/40 py-4 px-4 shadow-md">
+        <div className="max-w-7xl mx-auto flex flex-wrap items-center justify-center lg:justify-between gap-4 text-center lg:text-start">
+          <div className="flex flex-wrap items-center justify-center gap-3">
+            <span className="inline-flex items-center px-3.5 py-1.5 rounded-full bg-[#D89F26] text-[#0B2239] text-xs sm:text-sm font-extrabold tracking-wider uppercase shadow-sm">
               {t.offerBanner.badge}
             </span>
-            <span className="text-xs sm:text-sm font-bold text-[#0B2239]">
+            <span className="text-sm sm:text-base lg:text-lg font-bold text-white">
               {t.offerBanner.text}
             </span>
           </div>
 
-          <div className="flex flex-wrap items-center justify-center gap-3">
-            {/* Countdown Boxes */}
-            <div dir="ltr" className="inline-flex items-center gap-1.5 sm:gap-2">
+          <div className="flex flex-wrap items-center justify-center gap-4">
+            {/* Bigger Countdown Boxes */}
+            <div dir="ltr" className="inline-flex items-center gap-2 sm:gap-2.5">
               {[
                 { value: timeLeft.days, label: t.offerBanner.days },
                 { value: timeLeft.hours, label: t.offerBanner.hours },
@@ -266,16 +266,16 @@ export default function App() {
                 { value: timeLeft.seconds, label: t.offerBanner.seconds },
               ].map((unit, idx) => (
                 <React.Fragment key={idx}>
-                  <div className="bg-white border border-[#D89F26]/40 rounded-xl px-2.5 py-1 min-w-[48px] text-center shadow-sm">
-                    <span className="block text-sm sm:text-base font-extrabold text-[#0B2239] leading-tight">
+                  <div className="bg-[#133454] border-2 border-[#D89F26] rounded-2xl px-3.5 py-2 min-w-[64px] sm:min-w-[74px] text-center shadow-md">
+                    <span className="block text-xl sm:text-2xl font-extrabold text-[#D89F26] leading-none">
                       {unit.value}
                     </span>
-                    <span className="block text-[10px] font-bold text-[#B98519] uppercase leading-none mt-0.5">
+                    <span className="block text-[11px] sm:text-xs font-bold text-slate-200 uppercase leading-none mt-1.5">
                       {unit.label}
                     </span>
                   </div>
                   {idx < 3 && (
-                    <span className="font-extrabold text-[#D89F26] text-sm">:</span>
+                    <span className="font-extrabold text-[#D89F26] text-xl sm:text-2xl">:</span>
                   )}
                 </React.Fragment>
               ))}
@@ -283,7 +283,7 @@ export default function App() {
 
             <a
               href="#courses"
-              className="hidden md:inline-flex items-center px-3.5 py-1.5 rounded-xl bg-[#0B2239] hover:bg-[#133454] text-white text-xs font-bold transition-colors"
+              className="inline-flex items-center px-4 py-2.5 rounded-xl bg-[#D89F26] hover:bg-[#B98519] text-[#0B2239] text-xs sm:text-sm font-extrabold transition-colors shadow-sm"
             >
               {t.offerBanner.cta}
             </a>
