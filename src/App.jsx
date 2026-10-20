@@ -62,9 +62,9 @@ function FacebookIcon({ className = 'w-5 h-5' }) {
 export default function App() {
   const [lang, setLang] = useState(() => {
     try {
-      return localStorage.getItem('z2h_lang') || 'en';
+      return localStorage.getItem('z2h_lang_v2') || 'ar';
     } catch {
-      return 'en';
+      return 'ar';
     }
   });
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -100,7 +100,7 @@ export default function App() {
     document.documentElement.lang = lang;
     document.documentElement.dir = t.dir;
     try {
-      localStorage.setItem('z2h_lang', lang);
+      localStorage.setItem('z2h_lang_v2', lang);
     } catch {
       // ignore storage errors
     }
