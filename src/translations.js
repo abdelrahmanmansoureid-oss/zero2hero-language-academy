@@ -5,6 +5,15 @@ export const translations = {
     brandSubtitle: 'LANGUAGE ACADEMY',
     topbarAddress: '696 El Horreya Rd., El Fairouza Bldg., Loran, Alexandria 21532',
     topbarFb: 'Facebook Page',
+    offerBanner: {
+      badge: '🔥 LIMITED TIME OFFER',
+      text: 'Save 1,000 EGP on every course & bundle! Offer ends in:',
+      days: 'Days',
+      hours: 'Hours',
+      minutes: 'Min',
+      seconds: 'Sec',
+      cta: 'Claim Offer Now →',
+    },
     nav: {
       home: 'Home',
       modes: 'Online & Offline',
@@ -67,15 +76,16 @@ export const translations = {
       },
     },
     courses: {
-      tag: 'ENGLISH COURSES & PACKAGES',
+      tag: 'LIMITED TIME DISCOUNT • 1,000 EGP OFF ALL COURSES',
       title: 'Choose Your English Track or Full Bundle',
       subtitle:
-        'Structured 48-hour programs designed to take you from foundational basics to fluent, advanced English communication—available Offline in Loran or Live Online.',
+        'Structured 48-hour programs designed to take you from foundational basics to fluent, advanced English communication—now with 1,000 EGP limited-time discount on every package!',
       offlinePriceLabel: 'Offline (Campus)',
       onlinePriceLabel: 'Live Online',
       currency: 'EGP',
-      inquireBtn: 'Enroll via WhatsApp',
-      bestValueBadge: 'BEST VALUE • SAVE 999 EGP',
+      inquireBtn: 'Claim Offer via WhatsApp',
+      limitedDiscountTag: '🔥 LIMITED OFFER • SAVE 1,000 EGP',
+      bestValueBadge: 'BEST VALUE BUNDLE • EXTRA 1,000 EGP OFF',
       items: [
         {
           id: 'beginner',
@@ -84,7 +94,9 @@ export const translations = {
           title: 'Beginner English Course',
           duration: '48 Hours',
           offlinePrice: '3,499',
+          offlineOldPrice: '4,499',
           onlinePrice: '2,999',
+          onlineOldPrice: '3,999',
           desc: 'Start from scratch and build a rock-solid foundation in everyday English vocabulary, core grammar in context, clear pronunciation, and confident daily conversations.',
           features: [
             '48 hours of interactive training',
@@ -93,7 +105,7 @@ export const translations = {
             'Course materials & completion certificate included',
           ],
           waText:
-            'Hello ZERO2HERO! I want to enroll in the Beginner English Course (48 Hours - 3,499 EGP Offline / 2,999 EGP Online).',
+            'Hello ZERO2HERO! I want to claim the limited offer on the Beginner English Course (48 Hours - 3,499 EGP Offline instead of 4,499 EGP / 2,999 EGP Online instead of 3,999 EGP).',
         },
         {
           id: 'advanced',
@@ -102,7 +114,9 @@ export const translations = {
           title: 'Advanced English Course',
           duration: '48 Hours',
           offlinePrice: '3,499',
+          offlineOldPrice: '4,499',
           onlinePrice: '2,999',
+          onlineOldPrice: '3,999',
           desc: 'Elevate your English to natural fluency. Master spontaneous discussions, advanced expressions, professional communication, presentations, and native-like accuracy.',
           features: [
             '48 hours of intensive speaking & fluency practice',
@@ -111,7 +125,7 @@ export const translations = {
             'Course materials & completion certificate included',
           ],
           waText:
-            'Hello ZERO2HERO! I want to enroll in the Advanced English Course (48 Hours - 3,499 EGP Offline / 2,999 EGP Online).',
+            'Hello ZERO2HERO! I want to claim the limited offer on the Advanced English Course (48 Hours - 3,499 EGP Offline instead of 4,499 EGP / 2,999 EGP Online instead of 3,999 EGP).',
         },
         {
           id: 'bundle',
@@ -120,18 +134,18 @@ export const translations = {
           title: 'Zero to Hero Full Bundle',
           duration: '96 Hours Total (48h + 48h)',
           offlinePrice: '5,999',
-          offlineOldPrice: '6,998',
+          offlineOldPrice: '6,999',
           onlinePrice: '4,999',
-          onlineOldPrice: '5,998',
-          desc: 'Get both the Beginner Course (48h) and the Advanced Course (48h) together in one complete roadmap from Zero to Hero—with a special bundle discount!',
+          onlineOldPrice: '5,999',
+          desc: 'Get both the Beginner Course (48h) and the Advanced Course (48h) together in one complete roadmap from Zero to Hero—with our biggest limited-time bundle discount!',
           features: [
             'Includes BOTH Beginner (48h) + Advanced (48h) courses',
             '96 total hours of comprehensive English mastery',
-            'Save 999 EGP compared to booking each course separately',
+            'Limited Offer: 1,000 EGP off bundle price (save up to 3,000 EGP total!)',
             'Full study materials, placement test & accredited certificates',
           ],
           waText:
-            'Hello ZERO2HERO! I want to enroll in the Zero to Hero Full Bundle (Beginner + Advanced - 5,999 EGP Offline / 4,999 EGP Online).',
+            'Hello ZERO2HERO! I want to claim the limited offer on the Zero to Hero Full Bundle (Beginner + Advanced - 5,999 EGP Offline instead of 6,999 EGP / 4,999 EGP Online instead of 5,999 EGP).',
         },
       ],
     },
@@ -139,7 +153,7 @@ export const translations = {
       tag: 'INSTANT REGISTRATION',
       title: 'Book Your Course in 30 Seconds',
       subtitle:
-        'Select your preferred study mode and package below to send your enrollment inquiry directly to our admissions team on WhatsApp.',
+        'Select your preferred study mode and package below to lock in the 1,000 EGP discount directly with our admissions team on WhatsApp.',
       nameLabel: 'Full Name',
       namePlaceholder: 'Enter your name',
       modeLabel: 'Preferred Study Mode',
@@ -156,7 +170,7 @@ export const translations = {
         'Advanced',
         'Not sure — I need a Placement Test',
       ],
-      submitBtn: 'Send My Booking Request via WhatsApp',
+      submitBtn: 'Claim Discount & Book via WhatsApp',
     },
     whyUs: {
       tag: 'WHY ZERO2HERO ACADEMY',
@@ -209,6 +223,15 @@ export const translations = {
     brandSubtitle: 'أكاديمية اللغات',
     topbarAddress: '٦٩٦ طريق الحرية، عمارة الفيروزة، لوران، الإسكندرية 21532',
     topbarFb: 'صفحة فيسبوك',
+    offerBanner: {
+      badge: '🔥 عرض لفترة محدودة',
+      text: 'خصم 1,000 ج.م على جميع الكورسات والباقات! ينتهي العرض خلال:',
+      days: 'يوم',
+      hours: 'ساعة',
+      minutes: 'دقيقة',
+      seconds: 'ثانية',
+      cta: 'احجز بالخصم الآن ←',
+    },
     nav: {
       home: 'الرئيسية',
       modes: 'أونلاين وأوفلاين',
@@ -271,15 +294,16 @@ export const translations = {
       },
     },
     courses: {
-      tag: 'كورسات الإنجليزي والباقات',
+      tag: 'عرض لفترة محدودة • خصم 1,000 ج.م على جميع الكورسات',
       title: 'اختر الكورس المناسب لك أو باقة Zero to Hero الشاملة',
       subtitle:
-        'برامج تدريبية متكاملة بمدة 48 ساعة لكل مرحلة تأخذك من التأسيس وحتى الطلاقة المتقدمة — متاحة أوفلاين بمقر الأكاديمية في لوران أو أونلاين مباشر.',
+        'برامج تدريبية متكاملة بمدة 48 ساعة لكل مرحلة تأخذك من التأسيس وحتى الطلاقة المتقدمة — الآن بخصم 1,000 ج.م لفترة محدودة على كل كورس وباقة!',
       offlinePriceLabel: 'أوفلاين (بالمقر)',
       onlinePriceLabel: 'أونلاين مباشر',
       currency: 'ج.م',
-      inquireBtn: 'احجز الآن عبر واتساب',
-      bestValueBadge: 'الأكثر توفيراً • وفّر 999 ج.م',
+      inquireBtn: 'احجز بالخصم عبر واتساب',
+      limitedDiscountTag: '🔥 عرض محدود • خصم 1,000 ج.م',
+      bestValueBadge: 'الباقة الأكثر توفيراً • خصم إضافي 1,000 ج.م',
       items: [
         {
           id: 'beginner',
@@ -288,7 +312,9 @@ export const translations = {
           title: 'كورس الإنجليزي للمبتدئين (Beginners)',
           duration: '48 ساعة تدريبية',
           offlinePrice: '3,499',
+          offlineOldPrice: '4,499',
           onlinePrice: '2,999',
+          onlineOldPrice: '3,999',
           desc: 'ابدأ من الصفر وابنِ أساساً قوياً في مفردات الحياة اليومية، القواعد التطبيقية، النطق الصحيح، والمحادثات اليومية بثقة.',
           features: [
             '48 ساعة تدريبية تفاعلية',
@@ -297,7 +323,7 @@ export const translations = {
             'شامل المادة العلمية وشهادة إتمام معتمدة',
           ],
           waText:
-            'مرحباً ZERO2HERO! أرغب في حجز كورس الإنجليزي للمبتدئين (48 ساعة - 3499 ج.م أوفلاين / 2999 ج.م أونلاين).',
+            'مرحباً ZERO2HERO! أرغب في الاستفادة من العرض المحدود وحجز كورس الإنجليزي للمبتدئين (48 ساعة - 3499 ج.م بدلاً من 4499 ج.م أوفلاين / 2999 ج.م بدلاً من 3999 ج.م أونلاين).',
         },
         {
           id: 'advanced',
@@ -306,7 +332,9 @@ export const translations = {
           title: 'كورس الإنجليزي للمتقدمين (Advanced)',
           duration: '48 ساعة تدريبية',
           offlinePrice: '3,499',
+          offlineOldPrice: '4,499',
           onlinePrice: '2,999',
+          onlineOldPrice: '3,999',
           desc: 'انتقل بمستواك إلى الطلاقة التلقائية والاحترافية. أتقن المناقشات المفتوحة، المصطلحات المتقدمة، مهارات العرض، والتواصل المهني بطلاقة.',
           features: [
             '48 ساعة تدريبية مكثفة للمحادثة والطلاقة',
@@ -315,7 +343,7 @@ export const translations = {
             'شامل المادة العلمية وشهادة إتمام معتمدة',
           ],
           waText:
-            'مرحباً ZERO2HERO! أرغب في حجز كورس الإنجليزي للمتقدمين (48 ساعة - 3499 ج.م أوفلاين / 2999 ج.م أونلاين).',
+            'مرحباً ZERO2HERO! أرغب في الاستفادة من العرض المحدود وحجز كورس الإنجليزي للمتقدمين (48 ساعة - 3499 ج.م بدلاً من 4499 ج.م أوفلاين / 2999 ج.م بدلاً من 3999 ج.م أونلاين).',
         },
         {
           id: 'bundle',
@@ -324,26 +352,26 @@ export const translations = {
           title: 'باقة Zero to Hero الشاملة (Bundle)',
           duration: '96 ساعة إجمالاً (48 + 48 ساعة)',
           offlinePrice: '5,999',
-          offlineOldPrice: '6,998',
+          offlineOldPrice: '6,999',
           onlinePrice: '4,999',
-          onlineOldPrice: '5,998',
-          desc: 'احصل على كورس المبتدئين (48 ساعة) + كورس المتقدمين (48 ساعة) معاً في باقة واحدة متكاملة تأخذك من الصفر للاحتراف بخصم خاص!',
+          onlineOldPrice: '5,999',
+          desc: 'احصل على كورس المبتدئين (48 ساعة) + كورس المتقدمين (48 ساعة) معاً في باقة واحدة متكاملة تأخذك من الصفر للاحتراف بأكبر خصم لفترة محدودة!',
           features: [
             'تشمل كورس المبتدئين (48 ساعة) + كورس المتقدمين (48 ساعة)',
             'إجمالي 96 ساعة تدريبية لإتقان اللغة الإنجليزية بالكامل',
-            'وفّر 999 ج.م مقارنة بحجز كل كورس منفرداً',
+            'عرض محدود: خصم 1,000 ج.م إضافي على سعر الباقة الشاملة',
             'شاملة المادة العلمية، تحديد المستوى، والشهادات المعتمدة',
           ],
           waText:
-            'مرحباً ZERO2HERO! أرغب في حجز باقة Zero to Hero الشاملة للمبتدئين والمتقدمين (5999 ج.م أوفلاين / 4999 ج.م أونلاين).',
+            'مرحباً ZERO2HERO! أرغب في الاستفادة من العرض المحدود وحجز باقة Zero to Hero الشاملة للمبتدئين والمتقدمين (5999 ج.م بدلاً من 6999 ج.م أوفلاين / 4999 ج.م بدلاً من 5999 ج.م أونلاين).',
         },
       ],
     },
     matcher: {
       tag: 'تسجيل وحجز فوري',
-      title: 'احجز كورسك المناسب في ٣٠ ثانية',
+      title: 'احجز كورسك بالخصم في ٣٠ ثانية',
       subtitle:
-        'اختر الكورس ونظام الدراسة المفضل لديك وسنوجهك مباشرة إلى فريق الحجز والإرشاد الأكاديمي عبر واتساب.',
+        'اختر الكورس ونظام الدراسة المفضل لديك لحجز مقعدك بخصم 1,000 ج.م مباشرة مع فريق الحجز عبر واتساب.',
       nameLabel: 'الاسم الكامل',
       namePlaceholder: 'اكتب اسمك هنا',
       modeLabel: 'نظام الدراسة المفضل',
@@ -360,7 +388,7 @@ export const translations = {
         'متقدم',
         'لست متأكداً — أرغب في اختبار تحديد مستوى',
       ],
-      submitBtn: 'أرسل طلب الحجز عبر واتساب',
+      submitBtn: 'احجز بالخصم الآن عبر واتساب',
     },
     whyUs: {
       tag: 'لماذا أكاديمية ZERO2HERO',

@@ -8,6 +8,37 @@ const FACEBOOK_URL =
 const GOOGLE_MAPS_URL =
   'https://www.google.com/maps/search/?api=1&query=696+El+Horreya+Rd,+El+Fairouza+Bldg,+Loran,+Alexandria+21532';
 
+// 6 days, 11 hours, 23 minutes in seconds
+const INITIAL_COUNTDOWN_SECONDS = 6 * 86400 + 11 * 3600 + 23 * 60;
+const SESSION_STORAGE_KEY = 'z2h_session_offer_end_v1';
+
+function getSessionRemainingSeconds() {
+  try {
+    let endTimestamp = sessionStorage.getItem(SESSION_STORAGE_KEY);
+    if (!endTimestamp) {
+      endTimestamp = String(Date.now() + INITIAL_COUNTDOWN_SECONDS * 1000);
+      sessionStorage.setItem(SESSION_STORAGE_KEY, endTimestamp);
+    }
+    const diffSeconds = Math.max(0, Math.floor((Number(endTimestamp) - Date.now()) / 1000));
+    return diffSeconds;
+  } catch {
+    return INITIAL_COUNTDOWN_SECONDS;
+  }
+}
+
+function formatTimeLeft(totalSeconds) {
+  const days = Math.floor(totalSeconds / 86400);
+  const hours = Math.floor((totalSeconds % 86400) / 3600);
+  const minutes = Math.floor((totalSeconds % 3600) / 60);
+  const seconds = totalSeconds % 60;
+  return {
+    days: String(days).padStart(2, '0'),
+    hours: String(hours).padStart(2, '0'),
+    minutes: String(minutes).padStart(2, '0'),
+    seconds: String(seconds).padStart(2, '0'),
+  };
+}
+
 function buildWhatsAppUrl(message) {
   return `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`;
 }
@@ -37,6 +68,7 @@ export default function App() {
     }
   });
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [remainingSeconds, setRemainingSeconds] = useState(() => getSessionRemainingSeconds());
 
   // Study Plan Matcher state
   const [studentName, setStudentName] = useState('');
@@ -45,6 +77,14 @@ export default function App() {
   const [selectedLevelIdx, setSelectedLevelIdx] = useState(0);
 
   const t = translations[lang];
+  const timeLeft = formatTimeLeft(remainingSeconds);
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setRemainingSeconds(getSessionRemainingSeconds());
+    }, 1000);
+    return () => clearInterval(timer);
+  }, []);
 
   useEffect(() => {
     document.documentElement.lang = lang;
@@ -203,6 +243,53 @@ export default function App() {
           </div>
         )}
       </header>
+
+      {/* Limited-Time Session Countdown Bar Under Navbar */}
+      <div className="bg-gradient-to-r from-[#FDF6E7] via-[#FFF9EC] to-[#FDF6E7] border-b border-[#D89F26]/30 py-3 px-4 shadow-sm">
+        <div className="max-w-7xl mx-auto flex flex-wrap items-center justify-center sm:justify-between gap-3 text-center sm:text-start">
+          <div className="flex flex-wrap items-center justify-center gap-2.5">
+            <span className="inline-flex items-center px-3 py-1 rounded-full bg-[#D89F26] text-white text-xs font-extrabold tracking-wide shadow-sm">
+              {t.offerBanner.badge}
+            </span>
+            <span className="text-xs sm:text-sm font-bold text-[#0B2239]">
+              {t.offerBanner.text}
+            </span>
+          </div>
+
+          <div className="flex flex-wrap items-center justify-center gap-3">
+            {/* Countdown Boxes */}
+            <div dir="ltr" className="inline-flex items-center gap-1.5 sm:gap-2">
+              {[
+                { value: timeLeft.days, label: t.offerBanner.days },
+                { value: timeLeft.hours, label: t.offerBanner.hours },
+                { value: timeLeft.minutes, label: t.offerBanner.minutes },
+                { value: timeLeft.seconds, label: t.offerBanner.seconds },
+              ].map((unit, idx) => (
+                <React.Fragment key={idx}>
+                  <div className="bg-white border border-[#D89F26]/40 rounded-xl px-2.5 py-1 min-w-[48px] text-center shadow-sm">
+                    <span className="block text-sm sm:text-base font-extrabold text-[#0B2239] leading-tight">
+                      {unit.value}
+                    </span>
+                    <span className="block text-[10px] font-bold text-[#B98519] uppercase leading-none mt-0.5">
+                      {unit.label}
+                    </span>
+                  </div>
+                  {idx < 3 && (
+                    <span className="font-extrabold text-[#D89F26] text-sm">:</span>
+                  )}
+                </React.Fragment>
+              ))}
+            </div>
+
+            <a
+              href="#courses"
+              className="hidden md:inline-flex items-center px-3.5 py-1.5 rounded-xl bg-[#0B2239] hover:bg-[#133454] text-white text-xs font-bold transition-colors"
+            >
+              {t.offerBanner.cta}
+            </a>
+          </div>
+        </div>
+      </div>
 
       {/* Hero Section (Light Mode) */}
       <section
@@ -442,10 +529,16 @@ export default function App() {
                     : 'bg-white border-2 border-slate-200 hover:border-[#D89F26] shadow-md hover:shadow-xl'
                 }`}
               >
-                {course.featured && (
+                {course.featured ? (
                   <div className="absolute -top-4 inset-x-0 flex justify-center">
                     <span className="px-4 py-1 rounded-full bg-[#D89F26] text-white font-extrabold text-xs tracking-wide shadow-md">
                       ⭐ {t.courses.bestValueBadge}
+                    </span>
+                  </div>
+                ) : (
+                  <div className="absolute -top-3.5 inset-x-0 flex justify-center">
+                    <span className="px-3.5 py-1 rounded-full bg-[#0B2239] text-[#D89F26] font-extrabold text-[11px] tracking-wide shadow-sm">
+                      {t.courses.limitedDiscountTag}
                     </span>
                   </div>
                 )}

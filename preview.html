@@ -38,6 +38,35 @@
       const FACEBOOK_URL = 'https://www.facebook.com/profile.php?id=61595698253351&sk=directory_contact_info';
       const GOOGLE_MAPS_URL = 'https://www.google.com/maps/search/?api=1&query=696+El+Horreya+Rd,+El+Fairouza+Bldg,+Loran,+Alexandria+21532';
 
+      const INITIAL_COUNTDOWN_SECONDS = 6 * 86400 + 11 * 3600 + 23 * 60;
+      const SESSION_STORAGE_KEY = 'z2h_session_offer_end_v1';
+
+      function getSessionRemainingSeconds() {
+        try {
+          let endTimestamp = sessionStorage.getItem(SESSION_STORAGE_KEY);
+          if (!endTimestamp) {
+            endTimestamp = String(Date.now() + INITIAL_COUNTDOWN_SECONDS * 1000);
+            sessionStorage.setItem(SESSION_STORAGE_KEY, endTimestamp);
+          }
+          return Math.max(0, Math.floor((Number(endTimestamp) - Date.now()) / 1000));
+        } catch {
+          return INITIAL_COUNTDOWN_SECONDS;
+        }
+      }
+
+      function formatTimeLeft(totalSeconds) {
+        const days = Math.floor(totalSeconds / 86400);
+        const hours = Math.floor((totalSeconds % 86400) / 3600);
+        const minutes = Math.floor((totalSeconds % 3600) / 60);
+        const seconds = totalSeconds % 60;
+        return {
+          days: String(days).padStart(2, '0'),
+          hours: String(hours).padStart(2, '0'),
+          minutes: String(minutes).padStart(2, '0'),
+          seconds: String(seconds).padStart(2, '0'),
+        };
+      }
+
       function buildWhatsAppUrl(message) {
         return `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`;
       }
