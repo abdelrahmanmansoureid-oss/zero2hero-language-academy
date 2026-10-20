@@ -59,6 +59,8 @@ $filesToUpload = @(
     "preview.html",
     "README.md",
     "publish-version.ps1",
+    "CNAME",
+    "public/CNAME",
     "logo.png",
     "public/logo.png",
     "logo-full.png",
