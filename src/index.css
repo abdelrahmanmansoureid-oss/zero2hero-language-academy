@@ -1,0 +1,41 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    background-color: #FFFFFF;
+    color: #0B2239;
+  }
+
+  body {
+    font-family: 'Plus Jakarta Sans', 'Cairo', sans-serif;
+    background-color: #FFFFFF;
+    color: #0B2239;
+    overflow-x: hidden;
+  }
+
+  html[dir="rtl"] body {
+    font-family: 'Cairo', 'Plus Jakarta Sans', sans-serif;
+  }
+}
+
+@keyframes pulseRing {
+  0% {
+    transform: scale(0.95);
+    box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7);
+  }
+  70% {
+    transform: scale(1);
+    box-shadow: 0 0 0 14px rgba(37, 211, 102, 0);
+  }
+  100% {
+    transform: scale(0.95);
+    box-shadow: 0 0 0 0 rgba(37, 211, 102, 0);
+  }
+}
+
+.whatsapp-pulse {
+  animation: pulseRing 2.2s infinite;
+}

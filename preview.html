@@ -1,0 +1,816 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ZERO2HERO Language Academy | Live Preview (React + Tailwind CSS)</title>
+    <link rel="icon" type="image/png" href="./logo.png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <style>
+      html { scroll-behavior: smooth; background-color: #FFFFFF; color: #0B2239; }
+      body { font-family: 'Plus Jakarta Sans', 'Cairo', sans-serif; }
+      html[dir="rtl"] body { font-family: 'Cairo', 'Plus Jakarta Sans', sans-serif; }
+      @keyframes pulseRing {
+        0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7); }
+        70% { transform: scale(1); box-shadow: 0 0 0 14px rgba(37, 211, 102, 0); }
+        100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
+      }
+      .whatsapp-pulse { animation: pulseRing 2.2s infinite; }
+    </style>
+  </head>
+  <body class="bg-white text-[#0B2239] antialiased">
+    <div id="root"></div>
+
+    <script type="text/babel">
+      const { useState, useEffect } = React;
+
+      const WHATSAPP_NUMBER = '201041161062';
+      const WHATSAPP_DISPLAY = '+20 104 116 1062';
+      const FACEBOOK_URL = 'https://www.facebook.com/profile.php?id=61595698253351&sk=directory_contact_info';
+      const GOOGLE_MAPS_URL = 'https://www.google.com/maps/search/?api=1&query=696+El+Horreya+Rd,+El+Fairouza+Bldg,+Loran,+Alexandria+21532';
+
+      function buildWhatsAppUrl(message) {
+        return `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`;
+      }
+
+      const translations = {
+        en: {
+          dir: 'ltr',
+          langToggleLabel: 'العربية',
+          brandSubtitle: 'LANGUAGE ACADEMY',
+          topbarAddress: '696 El Horreya Rd., El Fairouza Bldg., Loran, Alexandria 21532',
+          topbarFb: 'Facebook Page',
+          nav: {
+            home: 'Home',
+            modes: 'Online & Offline',
+            courses: 'English Courses',
+            matcher: 'Level Check',
+            whyUs: 'Why Us',
+            location: 'Location & Contact',
+            joinWhatsapp: 'Join via WhatsApp',
+          },
+          hero: {
+            badge: 'English Language Specialists • Online & Offline in Alexandria',
+            titleStart: 'Master English From',
+            titleTo: 'To',
+            subtitle:
+              'Transform your English fluency with ZERO2HERO Language Academy. Whether you join us in-person at our Loran campus in Alexandria or attend live interactive online sessions from anywhere, our certified instructors guide you step-by-step from beginner to confident speaker.',
+            ctaPrimary: 'Book Placement Test on WhatsApp',
+            ctaSecondary: 'Explore English Courses',
+            stats: [
+              { value: '100%', label: 'Practical Speaking Focus' },
+              { value: 'Online & Offline', label: 'Flexible Learning Modes' },
+              { value: 'A1 → C2', label: 'CEFR Aligned Curriculum' },
+            ],
+            chipTopTitle: 'Certified Instructors',
+            chipTopSub: 'Real-World English Fluency',
+            chipBottomTitle: 'Loran Campus & Live Online',
+            chipBottomSub: 'Morning & Evening Batches',
+          },
+          modes: {
+            tag: 'FLEXIBLE STUDY MODES',
+            title: 'Study Offline in Alexandria or Live Online Anywhere',
+            subtitle:
+              'Experience the exact same interactive curriculum, speaking practice, and personal feedback in the format that suits your schedule best.',
+            offline: {
+              badge: 'In-Person Campus • Loran, Alexandria',
+              title: 'Offline Campus Courses',
+              desc: 'Join face-to-face classes at our air-conditioned, modern classrooms in Loran. Practice through real-time group conversations, role-plays, and interactive activities.',
+              features: [
+                'Located at 696 El Horreya Rd., El Fairouza Bldg., Loran',
+                'Small group sizes for maximum individual speaking time',
+                'Weekly in-person English Conversation Clubs',
+                'Printed & digital study materials + accredited certificate',
+              ],
+              cta: 'Ask About Offline Batches',
+              waMessage:
+                'Hello ZERO2HERO Language Academy! I would like to ask about your Offline (In-Person) English courses in Loran, Alexandria.',
+            },
+            online: {
+              badge: 'Interactive Virtual Classes • Worldwide',
+              title: 'Live Online Courses',
+              desc: 'Learn from the comfort of your home or office with 100% live instructor-led classes, breakout speaking rooms, digital whiteboards, and daily WhatsApp follow-up.',
+              features: [
+                '100% live interactive sessions (never pre-recorded only)',
+                'Flexible morning, evening, and weekend schedules',
+                'Group classes or VIP 1-on-1 private coaching',
+                'Recorded session recaps & continuous instructor support',
+              ],
+              cta: 'Ask About Online Batches',
+              waMessage:
+                'Hello ZERO2HERO Language Academy! I would like to ask about your Live Online English courses.',
+            },
+          },
+          courses: {
+            tag: 'ENGLISH ONLY SPECIALIZATION',
+            title: 'Our Comprehensive English Programs',
+            subtitle:
+              'Currently focused 100% on English mastery—designed for university students, professionals, job seekers, and young learners.',
+            filters: {
+              all: 'All English Tracks',
+              speaking: 'General & Speaking',
+              career: 'Business & Exams',
+              youth: 'Kids & Teens',
+            },
+            modeBadge: 'Online & Offline',
+            inquireBtn: 'Inquire on WhatsApp',
+            items: [
+              {
+                id: 'general',
+                category: 'speaking',
+                level: 'CEFR A1 – C1',
+                title: 'General English (Zero to Hero Track)',
+                desc: 'A complete step-by-step program covering practical grammar, active vocabulary, listening comprehension, and fluent everyday speaking.',
+                duration: '24 Hours / Level',
+                highlight: 'Accredited Certificate',
+                waText: 'Hello ZERO2HERO! I want details about the General English (Zero to Hero) course.',
+              },
+              {
+                id: 'conversation',
+                category: 'speaking',
+                level: 'B1 – C2',
+                title: 'Conversation & Phonetics Mastery',
+                desc: 'Break the fear of speaking! Intensive speaking workshops focused on American & British pronunciation, real-life idioms, debates, and fluency.',
+                duration: '100% Speaking',
+                highlight: 'Accent & Fluency Coaching',
+                waText: 'Hello ZERO2HERO! I want details about the Conversation & Phonetics Mastery course.',
+              },
+              {
+                id: 'business',
+                category: 'career',
+                level: 'B1+ Professional',
+                title: 'Business English & Job Interview Prep',
+                desc: 'Master corporate emails, meetings, presentations, customer care, and pass HR & multinational job interviews with total confidence.',
+                duration: 'Career Focused',
+                highlight: '1-on-1 Mock Interviews',
+                waText: 'Hello ZERO2HERO! I want details about the Business English & Job Interview Prep course.',
+              },
+              {
+                id: 'ielts',
+                category: 'career',
+                level: 'Target Band 6.5 – 8.0+',
+                title: 'IELTS Preparation (Academic & General)',
+                desc: 'Proven exam strategies for Listening, Reading, Writing, and Speaking with full timed mock tests and line-by-line writing corrections.',
+                duration: 'Exam Intensive',
+                highlight: 'Full Mock Exams Included',
+                waText: 'Hello ZERO2HERO! I want details about the IELTS Preparation course.',
+              },
+              {
+                id: 'kids',
+                category: 'youth',
+                level: 'Ages 6 – 16',
+                title: 'Kids & Teens English Academy',
+                desc: 'Engaging phonics, interactive storytelling, games, and public speaking skills that help young learners love and speak English naturally.',
+                duration: 'Age-Grouped',
+                highlight: 'Interactive Fun Activities',
+                waText: 'Hello ZERO2HERO! I want details about the Kids & Teens English program.',
+              },
+              {
+                id: 'vip',
+                category: 'speaking',
+                level: 'Custom Pace',
+                title: 'VIP 1-on-1 Private English Coaching',
+                desc: 'Tailor-made private sessions built around your personal schedule and goals—ideal for fast-track travel, relocation, or executive training.',
+                duration: 'Fast-Track',
+                highlight: 'Custom Schedule',
+                waText: 'Hello ZERO2HERO! I want details about VIP 1-on-1 Private English Coaching.',
+              },
+            ],
+          },
+          matcher: {
+            tag: 'INSTANT STUDY PLAN',
+            title: 'Find Your Perfect English Course in 30 Seconds',
+            subtitle:
+              'Fill in your preferences below to send a customized course inquiry directly to our admissions team on WhatsApp.',
+            nameLabel: 'Full Name',
+            namePlaceholder: 'Enter your name',
+            modeLabel: 'Preferred Study Mode',
+            modes: [
+              'Offline (In-Person at Loran, Alexandria)',
+              'Live Online',
+              'Both / Flexible',
+            ],
+            goalLabel: 'Target English Program',
+            levelLabel: 'Estimated Current Level',
+            levels: [
+              'Beginner (Starting from Zero)',
+              'Elementary / Pre-Intermediate',
+              'Intermediate',
+              'Upper-Intermediate / Advanced',
+              'Not sure — I need a Placement Test',
+            ],
+            submitBtn: 'Send My Study Plan via WhatsApp',
+          },
+          whyUs: {
+            tag: 'WHY ZERO2HERO ACADEMY',
+            title: 'Designed to Take You From Zero to Hero',
+            items: [
+              {
+                title: 'Speaking From Day One',
+                desc: 'Over 70% of every session is dedicated to active conversation, role-plays, and real-world communication rather than passive memorization.',
+              },
+              {
+                title: 'Certified Expert Instructors',
+                desc: 'Our trainers are carefully selected and trained in modern communicative methodologies to ensure rapid, measurable progress.',
+              },
+              {
+                title: 'Prime Location + Online Freedom',
+                desc: 'Conveniently located on El Horreya Road in Loran, Alexandria, alongside seamless live online classes accessible from anywhere.',
+              },
+              {
+                title: 'Placement Test & Progress Tracking',
+                desc: 'Start at the exact right level with our diagnostic placement assessment and receive continuous feedback until graduation.',
+              },
+            ],
+          },
+          contact: {
+            tag: 'VISIT OR CONTACT US',
+            title: 'Location & Direct Channels',
+            subtitle:
+              'Visit us at our Loran branch in Alexandria or reach out directly on WhatsApp and Facebook.',
+            addressTitle: 'Alexandria Campus Address',
+            addressText: '696 El Horreya Rd., El Fairouza Bldg., Loran, Alexandria Governorate 21532',
+            openMaps: 'Get Directions on Google Maps →',
+            waTitle: 'WhatsApp & Phone',
+            waAction: 'Start WhatsApp Chat Now →',
+            fbTitle: 'Official Facebook Page',
+            fbDesc: 'Follow us for new batch announcements, free English tips, and student stories.',
+            fbAction: 'Visit Our Facebook Page →',
+          },
+          footer: {
+            about:
+              'ZERO2HERO Language Academy is your premier destination for Offline and Online English courses in Loran, Alexandria and beyond.',
+            quickLinks: 'Quick Navigation',
+            contactTitle: 'Contact Information',
+            rights: 'All rights reserved.',
+            floatingWa: 'WhatsApp Us',
+          },
+        },
+        ar: {
+          dir: 'rtl',
+          langToggleLabel: 'English',
+          brandSubtitle: 'أكاديمية اللغات',
+          topbarAddress: '٦٩٦ طريق الحرية، عمارة الفيروزة، لوران، الإسكندرية 21532',
+          topbarFb: 'صفحة فيسبوك',
+          nav: {
+            home: 'الرئيسية',
+            modes: 'أونلاين وأوفلاين',
+            courses: 'كورسات الإنجليزي',
+            matcher: 'تحديد المستوى',
+            whyUs: 'لماذا نحن؟',
+            location: 'العنوان والتواصل',
+            joinWhatsapp: 'احجز عبر واتساب',
+          },
+          hero: {
+            badge: 'متخصصون في اللغة الإنجليزية • أونلاين وفي مقرنا بالإسكندرية',
+            titleStart: 'أتقن اللغة الإنجليزية من',
+            titleTo: 'إلى',
+            subtitle:
+              'طوّر طلاقتك في اللغة الإنجليزية مع أكاديمية ZERO2HERO. سواء كنت تفضل الدراسة الحضورية في فرعنا بلوران في الإسكندرية أو المحاضرات التفاعلية المباشرة أونلاين من أي مكان، مدربونا المعتمدون يرافقونك خطوة بخطوة من الصفر وحتى الاحتراف.',
+            ctaPrimary: 'احجز اختبار تحديد المستوى عبر واتساب',
+            ctaSecondary: 'استكشف كورسات الإنجليزي',
+            stats: [
+              { value: '100%', label: 'تركيز عملي على المحادثة' },
+              { value: 'أونلاين وحضوري', label: 'أنظمة دراسة مرنة' },
+              { value: 'A1 → C2', label: 'منهج معتمد وفق الإطار الأوروبي' },
+            ],
+            chipTopTitle: 'مدربون معتمدون',
+            chipTopSub: 'طلاقة وممارسة حقيقية',
+            chipBottomTitle: 'فرع لوران + بث مباشر أونلاين',
+            chipBottomSub: 'مواعيد صباحية ومسائية مرنة',
+          },
+          modes: {
+            tag: 'أنظمة دراسة مرنة',
+            title: 'ادرس حضورياً (Offline) في الإسكندرية أو أونلاين (Online) من أي مكان',
+            subtitle:
+              'نفس المنهج التفاعلي القوي وممارسة المحادثة والمتابعة الشخصية بالطريقة التي تناسب جدولك اليومي.',
+            offline: {
+              badge: 'حضوري في المقر • لوران، الإسكندرية',
+              title: 'كورسات أوفلاين (حضوري بالمقر)',
+              desc: 'احضر محاضراتك وجهاً لوجه في قاعاتنا المجهزة الحديثة في لوران بالإسكندرية، وتفاعل مباشرة مع زملائك ومدربك من خلال ورش المحادثة والأنشطة العملية.',
+              features: [
+                'العنوان: 696 طريق الحرية، عمارة الفيروزة، لوران، الإسكندرية',
+                'مجموعات صغيرة لضمان أكبر وقت تحدث لكل طالب',
+                'نادي محادثة أسبوعي لتطوير الطلاقة والثقة',
+                'مواد علمية مطبوعة ورقمية + شهادة معتمدة من الأكاديمية',
+              ],
+              cta: 'اسأل عن مواعيد الأوفلاين',
+              waMessage:
+                'مرحباً أكاديمية ZERO2HERO! أرغب في الاستفسار عن كورسات اللغة الإنجليزية الحضورية (Offline) في فرع لوران بالإسكندرية.',
+            },
+            online: {
+              badge: 'فصول افتراضية مباشرة • من أي مكان',
+              title: 'كورسات أونلاين تفاعلية مباشرة',
+              desc: 'تعلّم من منزلك أو عملك عبر محاضرات بث مباشر تفاعلية 100% مع المدرب، وغرف محادثة ثنائية وجماعية، ومتابعة يومية عبر واتساب.',
+              features: [
+                'محاضرات مباشرة تفاعلية 100% وليست فيديوهات مسجلة فقط',
+                'مواعيد صباحية ومسائية وعطلات نهاية الأسبوع',
+                'متاح مجموعات تفاعلية أو كورس خاص (1-on-1 VIP)',
+                'تسجيلات للمراجعة ومتابعة مستمرة مع المحاضر عبر واتساب',
+              ],
+              cta: 'اسأل عن مواعيد الأونلاين',
+              waMessage:
+                'مرحباً أكاديمية ZERO2HERO! أرغب في الاستفسار عن كورسات اللغة الإنجليزية الأونلاين (Live Online).',
+            },
+          },
+          courses: {
+            tag: 'تخصص كامل في اللغة الإنجليزية',
+            title: 'برامجنا التدريبية في اللغة الإنجليزية',
+            subtitle:
+              'نركز حالياً بشكل كامل ومتخصص على كورسات اللغة الإنجليزية لجميع الأعمار والمستويات: للطلاب، الخريجين، المهنيين، والأطفال.',
+            filters: {
+              all: 'جميع الكورسات',
+              speaking: 'الإنجليزي العام والمحادثة',
+              career: 'العمل والاختبارات الدولية',
+              youth: 'الأطفال والمراهقون',
+            },
+            modeBadge: 'أونلاين وأوفلاين',
+            inquireBtn: 'استفسر عبر واتساب',
+            items: [
+              {
+                id: 'general',
+                category: 'speaking',
+                level: 'CEFR A1 – C1',
+                title: 'الإنجليزي العام (مسار Zero to Hero)',
+                desc: 'برنامج متكامل يأخذك خطوة بخطوة لتطوير القواعد التطبيقية، الحصيلة اللغوية، الاستماع، والتحدث بطلاقة في المواقف اليومية.',
+                duration: '24 ساعة / مستوى',
+                highlight: 'شهادة معتمدة',
+                waText: 'مرحباً ZERO2HERO! أرغب في معرفة تفاصيل كورس الإنجليزي العام (Zero to Hero).',
+              },
+              {
+                id: 'conversation',
+                category: 'speaking',
+                level: 'B1 – C2',
+                title: 'إتقان المحادثة والصوتيات (Conversation & Phonetics)',
+                desc: 'اكسر حاجز الخوف من التحدث! ورش محادثة مكثفة تركز على النطق الصحيح، المصطلحات اليومية، المناقشات، والطلاقة التلقائية.',
+                duration: '100% ممارسة تحدث',
+                highlight: 'إتقان النطق والطلاقة',
+                waText: 'مرحباً ZERO2HERO! أرغب في معرفة تفاصيل كورس المحادثة والصوتيات.',
+              },
+              {
+                id: 'business',
+                category: 'career',
+                level: 'B1+ احترافي',
+                title: 'إنجليزي الأعمال واجتياز مقابلات العمل',
+                desc: 'أتقن كتابة الإيميلات الرسمية، العروض التقديمية، الاجتماعات، وتدرّب عملياً على اجتياز مقابلات العمل (HR & Technical Interviews) بثقة.',
+                duration: 'تأهيل لسوق العمل',
+                highlight: 'محاكاة مقابلات عمل',
+                waText: 'مرحباً ZERO2HERO! أرغب في معرفة تفاصيل كورس Business English ومقابلات العمل.',
+              },
+              {
+                id: 'ielts',
+                category: 'career',
+                level: 'Band 6.5 – 8.0+',
+                title: 'التحضير لاختبار الآيلتس (IELTS Academic & General)',
+                desc: 'استراتيجيات عملية للأقسام الأربعة (الاستماع، القراءة، الكتابة، التحدث) مع اختبارات تجريبية كاملة وتصحيح تفصيلي للمقالات.',
+                duration: 'تأهيل مكثف للاختبار',
+                highlight: 'اختبارات تجريبية شاملة',
+                waText: 'مرحباً ZERO2HERO! أرغب في معرفة تفاصيل كورس التحضير لاختبار IELTS.',
+              },
+              {
+                id: 'kids',
+                category: 'youth',
+                level: 'من 6 إلى 16 سنة',
+                title: 'أكاديمية الإنجليزي للأطفال والمراهقين (Kids & Teens)',
+                desc: 'تأسيس قوي في الصوتيات (Phonics)، القراءة، القصص التفاعلية، ومهارات التحدث والعرض في بيئة تعليمية ممتعة ومحفزة.',
+                duration: 'مقسم حسب العمر',
+                highlight: 'أنشطة تفاعلية ممتعة',
+                waText: 'مرحباً ZERO2HERO! أرغب في معرفة تفاصيل برنامج الأطفال والمراهقين Kids & Teens.',
+              },
+              {
+                id: 'vip',
+                category: 'speaking',
+                level: 'معدل مخصص',
+                title: 'كورس خاص فردي (VIP 1-on-1 Intensive)',
+                desc: 'محاضرات فردية خاصة مصممة بالكامل حسب جدولك وأهدافك الخاصة—مثالية للسفر السريع أو الهجرة أو التدريب التنفيذي.',
+                duration: 'مسار سريع ومكثف',
+                highlight: 'مواعيد مرنة بالكامل',
+                waText: 'مرحباً ZERO2HERO! أرغب في معرفة تفاصيل الكورس الخاص الفردي VIP 1-on-1.',
+              },
+            ],
+          },
+          matcher: {
+            tag: 'خطة دراسية فورية',
+            title: 'حدد الكورس المناسب لك في ٣٠ ثانية',
+            subtitle:
+              'اختر هدفك ونظام الدراسة المفضل لديك وسنوجهك مباشرة إلى فريق الإرشاد الأكاديمي عبر واتساب.',
+            nameLabel: 'الاسم الكامل',
+            namePlaceholder: 'اكتب اسمك هنا',
+            modeLabel: 'نظام الدراسة المفضل',
+            modes: [
+              'أوفلاين (حضوري في فرع لوران - الإسكندرية)',
+              'أونلاين (بث مباشر تفاعلي)',
+              'مرن (أونلاين أو أوفلاين)',
+            ],
+            goalLabel: 'البرنامج المطلوب',
+            levelLabel: 'مستواك الحالي التقريبي',
+            levels: [
+              'مبتدئ (البداية من الصفر)',
+              'أساسي / ما قبل المتوسط',
+              'متوسط (Intermediate)',
+              'فوق المتوسط / متقدم',
+              'لست متأكداً — أرغب في اختبار تحديد مستوى',
+            ],
+            submitBtn: 'أرسل خطتي الدراسية عبر واتساب',
+          },
+          whyUs: {
+            tag: 'لماذا أكاديمية ZERO2HERO',
+            title: 'نصنع الفارق في رحلتك من الصفر إلى الاحتراف',
+            items: [
+              {
+                title: 'ممارسة التحدث من اليوم الأول',
+                desc: 'أكثر من 70% من وقت المحاضرة مخصص للمحادثة الفعّالة والمواقف الحياتية الواقعية بعيداً عن الحفظ التقليدي.',
+              },
+              {
+                title: 'مدربون محترفون ومعتمدون',
+                desc: 'نخبة من المحاضرين المتخصصين في تدريس اللغة الإنجليزية بأساليب تفاعلية حديثة تضمن تطوراً ملموساً وسريعاً.',
+              },
+              {
+                title: 'موقع متميز في لوران + مرونة الأونلاين',
+                desc: 'فرعنا في قلب الإسكندرية على طريق الحرية بلوران، بالإضافة إلى فصول افتراضية مباشرة تتيح لك التعلم من أي مكان.',
+              },
+              {
+                title: 'تحديد مستوى دقيق ومتابعة مستمرة',
+                desc: 'نبدأ معك باختبار تحديد مستوى شامل لضمان وضعك في المستوى الصحيح مع تقييم أسبوعي وشهادة معتمدة.',
+              },
+            ],
+          },
+          contact: {
+            tag: 'تفضل بزيارتنا أو تواصل معنا',
+            title: 'موقع الأكاديمية وقنوات التواصل',
+            subtitle:
+              'يسعدنا استقبالكم في فرعنا بلوران في الإسكندرية أو الرد على استفساراتكم فوراً عبر واتساب وفيسبوك.',
+            addressTitle: 'عنوان فرع الإسكندرية',
+            addressText: '696 طريق الحرية، عمارة الفيروزة، لوران، محافظة الإسكندرية 21532',
+            openMaps: 'افتح الموقع على خرائط جوجل ←',
+            waTitle: 'واتساب والهاتف المباشر',
+            waAction: 'ابدأ محادثة واتساب الآن ←',
+            fbTitle: 'صفحتنا الرسمية على فيسبوك',
+            fbDesc: 'تابع أحدث المواعيد، نصائح تعلم الإنجليزية اليومية، وقصص نجاح طلابنا.',
+            fbAction: 'زيارة صفحة فيسبوك ←',
+          },
+          footer: {
+            about:
+              'أكاديمية ZERO2HERO للغات هي وجهتك الأولى لتعلم وإتقان اللغة الإنجليزية أونلاين وأوفلاين في لوران بالإسكندرية وفي كل مكان.',
+            quickLinks: 'روابط سريعة',
+            contactTitle: 'بيانات التواصل',
+            rights: 'جميع الحقوق محفوظة.',
+            floatingWa: 'تواصل واتساب',
+          },
+        },
+      };
+
+      function WhatsAppIcon({ className = 'w-5 h-5' }) {
+        return (
+          <svg className={className} viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+            <path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.582 2.128 2.182-.573c.978.58 1.911.928 3.145.929 3.178 0 5.767-2.587 5.768-5.766.001-3.187-2.575-5.77-5.764-5.771zm3.392 8.244c-.144.405-.837.774-1.17.824-.299.045-.677.063-1.092-.069-.252-.08-.575-.187-.988-.365-1.739-.751-2.874-2.502-2.961-2.617-.087-.116-.708-.94-.708-1.793s.448-1.273.607-1.446c.159-.173.346-.217.462-.217l.332.006c.106.005.249-.04.39.298.144.347.491 1.2.534 1.287.043.087.072.188.014.304-.058.116-.087.188-.173.289l-.26.304c-.087.086-.177.18-.076.354.101.174.449.741.964 1.201.662.591 1.221.774 1.394.86s.274.072.376-.043c.101-.116.433-.506.549-.68.116-.173.231-.145.39-.087s1.011.477 1.184.564.289.13.332.202c.045.072.045.419-.1.824zm-3.423-14.416c-6.627 0-12 5.373-12 12 0 2.126.556 4.124 1.529 5.856l-1.529 5.584 5.716-1.5c1.682.912 3.606 1.433 5.656 1.433 6.627 0 12-5.373 12-12s-5.373-11.373-11.372-11.373z" />
+          </svg>
+        );
+      }
+
+      function FacebookIcon({ className = 'w-5 h-5' }) {
+        return (
+          <svg className={className} viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+            <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z" />
+          </svg>
+        );
+      }
+
+      function App() {
+        const [lang, setLang] = useState('en');
+        const [activeFilter, setActiveFilter] = useState('all');
+        const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+        const [studentName, setStudentName] = useState('');
+        const [selectedModeIdx, setSelectedModeIdx] = useState(0);
+        const [selectedCourseIdx, setSelectedCourseIdx] = useState(0);
+        const [selectedLevelIdx, setSelectedLevelIdx] = useState(0);
+
+        const t = translations[lang];
+
+        useEffect(() => {
+          document.documentElement.lang = lang;
+          document.documentElement.dir = t.dir;
+        }, [lang, t.dir]);
+
+        const toggleLanguage = () => setLang((prev) => (prev === 'en' ? 'ar' : 'en'));
+
+        const filteredCourses =
+          activeFilter === 'all'
+            ? t.courses.items
+            : t.courses.items.filter((course) => course.category === activeFilter);
+
+        const handleMatcherSubmit = (e) => {
+          e.preventDefault();
+          const chosenMode = t.matcher.modes[selectedModeIdx] || t.matcher.modes[0];
+          const chosenCourse = t.courses.items[selectedCourseIdx]?.title || t.courses.items[0].title;
+          const chosenLevel = t.matcher.levels[selectedLevelIdx] || t.matcher.levels[0];
+
+          const message =
+            lang === 'ar'
+              ? `مرحباً أكاديمية ZERO2HERO للغات!\nالاسم: ${studentName}\nنظام الدراسة المفضل: ${chosenMode}\nالكورس المطلوب: ${chosenCourse}\nالمستوى الحالي: ${chosenLevel}\nأرغب في معرفة المواعيد المتاحة والتفاصيل.`
+              : `Hello ZERO2HERO Language Academy!\nName: ${studentName}\nPreferred Mode: ${chosenMode}\nTarget Course: ${chosenCourse}\nCurrent Level: ${chosenLevel}\nI would like to know the available schedules and details.`;
+
+          window.open(buildWhatsAppUrl(message), '_blank', 'noopener,noreferrer');
+        };
+
+        return (
+          <div className="min-h-screen bg-white text-[#0B2239]">
+            <div className="bg-[#0B2239] text-white text-xs sm:text-sm py-2.5 px-4 border-b border-white/10">
+              <div className="max-w-7xl mx-auto flex flex-wrap items-center justify-between gap-2">
+                <a href={GOOGLE_MAPS_URL} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-slate-200 hover:text-[#D89F26] transition-colors">
+                  <span>📍</span>
+                  <span>{t.topbarAddress}</span>
+                </a>
+                <div className="flex items-center gap-4 ms-auto">
+                  <a href={`tel:+${WHATSAPP_NUMBER}`} dir="ltr" className="text-slate-200 hover:text-[#D89F26] font-medium">
+                    {WHATSAPP_DISPLAY}
+                  </a>
+                  <span className="text-white/20">|</span>
+                  <a href={FACEBOOK_URL} target="_blank" rel="noopener noreferrer" className="flex items-center gap-1.5 text-slate-200 hover:text-[#D89F26] font-medium">
+                    <FacebookIcon className="w-4 h-4 text-[#D89F26]" />
+                    <span>{t.topbarFb}</span>
+                  </a>
+                </div>
+              </div>
+            </div>
+
+            <header className="sticky top-0 z-40 bg-white/95 backdrop-blur-md border-b border-slate-200/80 shadow-sm">
+              <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between gap-4">
+                <a href="#home" className="flex items-center gap-3 group shrink-0">
+                  <img src="./logo.png" alt="ZERO2HERO Language Academy" className="w-14 h-14 object-contain rounded-xl bg-white p-0.5 border border-slate-100 shadow-sm" />
+                  <div className="flex flex-col">
+                    <span className="text-xl sm:text-2xl font-extrabold tracking-tight text-[#0B2239] leading-none">
+                      ZERO<span className="text-[#D89F26]">2</span>HERO
+                    </span>
+                    <span className="text-[11px] sm:text-xs font-bold tracking-[0.18em] text-slate-500 mt-1">
+                      {t.brandSubtitle}
+                    </span>
+                  </div>
+                </a>
+
+                <nav className="hidden lg:flex items-center gap-7 text-sm font-semibold text-slate-700">
+                  <a href="#home" className="hover:text-[#D89F26]">{t.nav.home}</a>
+                  <a href="#modes" className="hover:text-[#D89F26]">{t.nav.modes}</a>
+                  <a href="#courses" className="hover:text-[#D89F26]">{t.nav.courses}</a>
+                  <a href="#matcher" className="hover:text-[#D89F26]">{t.nav.matcher}</a>
+                  <a href="#why-us" className="hover:text-[#D89F26]">{t.nav.whyUs}</a>
+                  <a href="#location" className="hover:text-[#D89F26]">{t.nav.location}</a>
+                </nav>
+
+                <div className="flex items-center gap-2.5 sm:gap-3">
+                  <button
+                    type="button"
+                    onClick={toggleLanguage}
+                    className="inline-flex items-center gap-2 px-3.5 py-2 rounded-xl border-2 border-slate-200 bg-slate-50 hover:bg-[#FDF6E7] hover:border-[#D89F26] text-[#0B2239] font-bold text-sm transition-all cursor-pointer"
+                  >
+                    <span>🌐</span>
+                    <span>{t.langToggleLabel}</span>
+                  </button>
+
+                  <a
+                    href={buildWhatsAppUrl('Hello ZERO2HERO Language Academy! I would like to inquire about your English courses.')}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="hidden sm:inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-[#25D366] hover:bg-[#1ebe5d] text-white font-bold text-sm shadow-md"
+                  >
+                    <WhatsAppIcon className="w-4 h-4" />
+                    <span>{t.nav.joinWhatsapp}</span>
+                  </a>
+                </div>
+              </div>
+            </header>
+
+            <section id="home" className="relative overflow-hidden bg-gradient-to-b from-[#FFFDF8] via-white to-slate-50/70 pt-10 pb-20 lg:pt-16 lg:pb-24">
+              <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
+                <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                  <div className="lg:col-span-7 space-y-6">
+                    <div className="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-[#FDF6E7] border border-[#D89F26]/30 text-[#0B2239] text-xs sm:text-sm font-bold shadow-sm">
+                      <span className="w-2.5 h-2.5 rounded-full bg-[#D89F26]" />
+                      <span>{t.hero.badge}</span>
+                    </div>
+
+                    <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-[#0B2239] leading-[1.15] tracking-tight">
+                      {t.hero.titleStart}{' '}
+                      <span className="inline-block px-3 py-0.5 rounded-xl bg-[#0B2239] text-white">ZERO</span>{' '}
+                      {t.hero.titleTo}{' '}
+                      <span className="inline-block px-3 py-0.5 rounded-xl bg-[#D89F26] text-white">HERO</span>
+                    </h1>
+
+                    <p className="text-base sm:text-lg text-slate-600 leading-relaxed max-w-2xl">
+                      {t.hero.subtitle}
+                    </p>
+
+                    <div className="flex flex-wrap items-center gap-4 pt-2">
+                      <a
+                        href={buildWhatsAppUrl('Hello ZERO2HERO Language Academy! I want to book my English placement test.')}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center justify-center gap-2.5 px-7 py-4 rounded-2xl bg-[#0B2239] hover:bg-[#133454] text-white font-bold text-base shadow-lg"
+                      >
+                        <WhatsAppIcon className="w-5 h-5 text-[#25D366]" />
+                        <span>{t.hero.ctaPrimary}</span>
+                      </a>
+
+                      <a href="#courses" className="inline-flex items-center justify-center gap-2 px-7 py-4 rounded-2xl bg-white hover:bg-[#FDF6E7] text-[#0B2239] border-2 border-[#0B2239]/15 hover:border-[#D89F26] font-bold text-base">
+                        <span>{t.hero.ctaSecondary}</span>
+                      </a>
+                    </div>
+
+                    <div className="pt-6 grid grid-cols-3 gap-4 border-t border-slate-200/80 max-w-xl">
+                      {t.hero.stats.map((stat, idx) => (
+                        <div key={idx} className="bg-white p-3.5 rounded-2xl border border-slate-100 shadow-sm">
+                          <div className="text-lg sm:text-2xl font-extrabold text-[#D89F26]">{stat.value}</div>
+                          <div className="text-xs sm:text-sm font-medium text-slate-600 mt-0.5">{stat.label}</div>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+
+                  <div className="lg:col-span-5 flex justify-center">
+                    <div className="relative w-full max-w-md bg-white rounded-3xl p-8 sm:p-10 border-2 border-slate-100 shadow-2xl">
+                      <img src="./logo.png" alt="ZERO2HERO Language Academy Official Logo" className="w-full h-auto max-h-80 object-contain mx-auto my-4" />
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </section>
+
+            <section id="modes" className="py-20 bg-slate-50 border-y border-slate-200/70">
+              <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div className="text-center max-w-3xl mx-auto mb-14">
+                  <span className="inline-block px-3.5 py-1 rounded-full bg-[#FDF6E7] text-[#B98519] font-extrabold text-xs tracking-wider uppercase mb-3">
+                    {t.modes.tag}
+                  </span>
+                  <h2 className="text-3xl sm:text-4xl font-extrabold text-[#0B2239]">{t.modes.title}</h2>
+                  <p className="mt-3 text-slate-600 text-base sm:text-lg">{t.modes.subtitle}</p>
+                </div>
+
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                  <div className="bg-white rounded-3xl p-8 sm:p-10 border-2 border-slate-200/80 shadow-md flex flex-col justify-between">
+                    <div>
+                      <span className="inline-block px-3.5 py-1.5 rounded-full bg-[#0B2239] text-white text-xs font-bold mb-5">
+                        {t.modes.offline.badge}
+                      </span>
+                      <h3 className="text-2xl font-extrabold text-[#0B2239] mb-3">{t.modes.offline.title}</h3>
+                      <p className="text-slate-600 mb-6">{t.modes.offline.desc}</p>
+                      <ul className="space-y-3 mb-8">
+                        {t.modes.offline.features.map((feat, i) => (
+                          <li key={i} className="flex items-start gap-3 text-sm sm:text-base text-slate-700 font-medium">
+                            <span className="text-[#D89F26] font-bold">✓</span>
+                            <span>{feat}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                    <a href={buildWhatsAppUrl(t.modes.offline.waMessage)} target="_blank" rel="noopener noreferrer" className="w-full inline-flex items-center justify-center gap-2 py-4 px-6 rounded-2xl bg-[#0B2239] text-white font-bold">
+                      <WhatsAppIcon className="w-5 h-5 text-[#25D366]" />
+                      <span>{t.modes.offline.cta}</span>
+                    </a>
+                  </div>
+
+                  <div className="bg-white rounded-3xl p-8 sm:p-10 border-2 border-[#D89F26] shadow-md flex flex-col justify-between">
+                    <div>
+                      <span className="inline-block px-3.5 py-1.5 rounded-full bg-[#FDF6E7] text-[#B98519] text-xs font-bold mb-5">
+                        {t.modes.online.badge}
+                      </span>
+                      <h3 className="text-2xl font-extrabold text-[#0B2239] mb-3">{t.modes.online.title}</h3>
+                      <p className="text-slate-600 mb-6">{t.modes.online.desc}</p>
+                      <ul className="space-y-3 mb-8">
+                        {t.modes.online.features.map((feat, i) => (
+                          <li key={i} className="flex items-start gap-3 text-sm sm:text-base text-slate-700 font-medium">
+                            <span className="text-[#D89F26] font-bold">✓</span>
+                            <span>{feat}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                    <a href={buildWhatsAppUrl(t.modes.online.waMessage)} target="_blank" rel="noopener noreferrer" className="w-full inline-flex items-center justify-center gap-2 py-4 px-6 rounded-2xl bg-[#D89F26] text-white font-bold">
+                      <WhatsAppIcon className="w-5 h-5" />
+                      <span>{t.modes.online.cta}</span>
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </section>
+
+            <section id="courses" className="py-20 bg-white">
+              <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div className="text-center max-w-3xl mx-auto mb-10">
+                  <span className="inline-block px-3.5 py-1 rounded-full bg-[#FDF6E7] text-[#B98519] font-extrabold text-xs tracking-wider uppercase mb-3">
+                    {t.courses.tag}
+                  </span>
+                  <h2 className="text-3xl sm:text-4xl font-extrabold text-[#0B2239]">{t.courses.title}</h2>
+                  <p className="mt-3 text-slate-600 text-base sm:text-lg">{t.courses.subtitle}</p>
+                </div>
+
+                <div className="flex flex-wrap items-center justify-center gap-2.5 mb-12">
+                  {[
+                    { id: 'all', label: t.courses.filters.all },
+                    { id: 'speaking', label: t.courses.filters.speaking },
+                    { id: 'career', label: t.courses.filters.career },
+                    { id: 'youth', label: t.courses.filters.youth },
+                  ].map((tab) => (
+                    <button
+                      key={tab.id}
+                      type="button"
+                      onClick={() => setActiveFilter(tab.id)}
+                      className={`px-5 py-2.5 rounded-full text-sm font-bold transition-all cursor-pointer ${
+                        activeFilter === tab.id ? 'bg-[#0B2239] text-white shadow-md' : 'bg-slate-100 text-slate-700'
+                      }`}
+                    >
+                      {tab.label}
+                    </button>
+                  ))}
+                </div>
+
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-7">
+                  {filteredCourses.map((course) => (
+                    <article key={course.id} className="bg-white rounded-3xl p-7 border border-slate-200 hover:border-[#D89F26] shadow-sm flex flex-col justify-between">
+                      <div>
+                        <div className="flex items-center justify-between gap-2 mb-4">
+                          <span className="px-3 py-1 rounded-lg bg-[#0B2239]/5 text-[#0B2239] font-extrabold text-xs">{course.level}</span>
+                          <span className="px-3 py-1 rounded-lg bg-[#FDF6E7] text-[#B98519] font-bold text-xs">{t.courses.modeBadge}</span>
+                        </div>
+                        <h3 className="text-xl font-extrabold text-[#0B2239] mb-3">{course.title}</h3>
+                        <p className="text-slate-600 text-sm leading-relaxed mb-6">{course.desc}</p>
+                      </div>
+                      <div>
+                        <div className="flex items-center justify-between text-xs font-bold text-slate-500 py-3 px-4 rounded-xl bg-slate-50 mb-5">
+                          <span>⏱️ {course.duration}</span>
+                          <span>🎓 {course.highlight}</span>
+                        </div>
+                        <a href={buildWhatsAppUrl(course.waText)} target="_blank" rel="noopener noreferrer" className="w-full inline-flex items-center justify-center gap-2 py-3.5 px-4 rounded-xl border-2 border-[#0B2239] text-[#0B2239] hover:bg-[#0B2239] hover:text-white font-bold text-sm transition-all">
+                          <WhatsAppIcon className="w-4 h-4 text-[#25D366]" />
+                          <span>{t.courses.inquireBtn}</span>
+                        </a>
+                      </div>
+                    </article>
+                  ))}
+                </div>
+              </div>
+            </section>
+
+            <section id="location" className="py-20 bg-slate-50 border-t border-slate-200/80">
+              <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div className="text-center max-w-3xl mx-auto mb-14">
+                  <h2 className="text-3xl sm:text-4xl font-extrabold text-[#0B2239]">{t.contact.title}</h2>
+                  <p className="mt-3 text-slate-600">{t.contact.subtitle}</p>
+                </div>
+
+                <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
+                  <div className="lg:col-span-5 flex flex-col justify-between gap-5">
+                    <div className="bg-white p-6 rounded-3xl border border-slate-200 shadow-sm">
+                      <h3 className="text-lg font-extrabold text-[#0B2239]">{t.contact.addressTitle}</h3>
+                      <p className="text-sm text-slate-600 mt-1">{t.contact.addressText}</p>
+                      <a href={GOOGLE_MAPS_URL} target="_blank" rel="noopener noreferrer" className="inline-block mt-3 text-sm font-bold text-[#D89F26]">{t.contact.openMaps}</a>
+                    </div>
+                    <div className="bg-white p-6 rounded-3xl border border-slate-200 shadow-sm">
+                      <h3 className="text-lg font-extrabold text-[#0B2239]">{t.contact.waTitle}</h3>
+                      <p dir="ltr" className="text-base font-bold text-slate-700 mt-1">{WHATSAPP_DISPLAY}</p>
+                      <a href={buildWhatsAppUrl('Hello ZERO2HERO Language Academy!')} target="_blank" rel="noopener noreferrer" className="inline-block mt-3 text-sm font-bold text-[#25D366]">{t.contact.waAction}</a>
+                    </div>
+                    <div className="bg-white p-6 rounded-3xl border border-slate-200 shadow-sm">
+                      <h3 className="text-lg font-extrabold text-[#0B2239]">{t.contact.fbTitle}</h3>
+                      <p className="text-sm text-slate-600 mt-1">{t.contact.fbDesc}</p>
+                      <a href={FACEBOOK_URL} target="_blank" rel="noopener noreferrer" className="inline-block mt-3 text-sm font-bold text-[#1877F2]">{t.contact.fbAction}</a>
+                    </div>
+                  </div>
+                  <div className="lg:col-span-7 bg-white rounded-3xl overflow-hidden border border-slate-200 shadow-sm min-h-[380px]">
+                    <iframe
+                      title="ZERO2HERO Language Academy - 696 El Horreya Rd, Loran, Alexandria"
+                      src="https://www.google.com/maps?q=696+El+Horreya+Rd,+Loran,+Alexandria,+Egypt&output=embed"
+                      className="w-full h-full min-h-[380px] border-0"
+                      loading="lazy"
+                      allowFullScreen
+                    />
+                  </div>
+                </div>
+              </div>
+            </section>
+
+            <a
+              href={buildWhatsAppUrl('Hello ZERO2HERO Language Academy! I would like to ask about your English courses.')}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="fixed bottom-6 end-6 z-50 inline-flex items-center gap-2.5 px-5 py-3.5 rounded-full bg-[#25D366] text-white font-extrabold text-sm shadow-xl whatsapp-pulse"
+            >
+              <WhatsAppIcon className="w-6 h-6" />
+              <span>{t.footer.floatingWa}</span>
+            </a>
+          </div>
+        );
+      }
+
+      ReactDOM.createRoot(document.getElementById('root')).render(<App />);
+    </script>
+  </body>
+</html>
