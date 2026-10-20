@@ -6,7 +6,7 @@ export const translations = {
     topbarAddress: '696 El Horreya Rd., El Fairouza Bldg., Loran, Alexandria 21532',
     topbarFb: 'Facebook Page',
     offerBanner: {
-      badge: '🔥 LIMITED OFFER',
+      badge: 'LIMITED OFFER',
       textBeforeAmount: 'Save',
       amount: '1,000 EGP',
       textAfterAmount: 'on every course Offer ends in:',
@@ -226,7 +226,7 @@ export const translations = {
     topbarAddress: '٦٩٦ طريق الحرية، عمارة الفيروزة، لوران، الإسكندرية 21532',
     topbarFb: 'صفحة فيسبوك',
     offerBanner: {
-      badge: '🔥 عرض محدود',
+      badge: 'عرض محدود',
       textBeforeAmount: 'خصم',
       amount: '1,000 ج.م',
       textAfterAmount: 'على كل كورس ينتهي العرض خلال:',

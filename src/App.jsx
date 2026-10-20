@@ -68,6 +68,7 @@ export default function App() {
     }
   });
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
   const [remainingSeconds, setRemainingSeconds] = useState(() => getSessionRemainingSeconds());
 
   // Study Plan Matcher state
@@ -84,6 +85,15 @@ export default function App() {
       setRemainingSeconds(getSessionRemainingSeconds());
     }, 1000);
     return () => clearInterval(timer);
+  }, []);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 10);
+    };
+    handleScroll();
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
   useEffect(() => {
@@ -118,7 +128,11 @@ export default function App() {
   return (
     <div className="min-h-screen bg-white text-[#0B2239] selection:bg-[#D89F26]/20 selection:text-[#0B2239]">
       {/* Sticky Light Mode Navbar */}
-      <header className="sticky top-0 z-40 bg-white/95 backdrop-blur-md border-b border-slate-200/80 shadow-sm">
+      <header
+        className={`sticky top-0 z-40 bg-white/95 backdrop-blur-md border-b border-slate-200/80 transition-shadow duration-300 ${
+          isScrolled ? 'shadow-md shadow-[#0B2239]/10' : ''
+        }`}
+      >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between gap-4">
           {/* Brand Logo */}
           <a href="#home" className="flex items-center gap-3 group shrink-0">
@@ -248,8 +262,9 @@ export default function App() {
       <div className="bg-[#0B2239] text-white border-b border-[#D89F26]/40 py-4 px-4 shadow-md">
         <div className="max-w-7xl mx-auto flex flex-wrap items-center justify-center lg:justify-between gap-4 text-center lg:text-start">
           <div className="flex flex-wrap items-center justify-center gap-3">
-            <span className="inline-flex items-center px-3.5 py-1.5 rounded-full bg-[#D89F26] text-[#0B2239] text-xs sm:text-sm font-extrabold tracking-wider uppercase shadow-sm">
-              {t.offerBanner.badge}
+            <span className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-[#D89F26] text-[#0B2239] text-xs sm:text-sm font-extrabold tracking-wider uppercase shadow-sm">
+              <span className="text-lg sm:text-xl leading-none">🔥</span>
+              <span>{t.offerBanner.badge}</span>
             </span>
             <span className="text-sm sm:text-base lg:text-lg font-bold text-white">
               {t.offerBanner.textBeforeAmount}{' '}
