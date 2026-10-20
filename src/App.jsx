@@ -252,7 +252,9 @@ export default function App() {
               {t.offerBanner.badge}
             </span>
             <span className="text-sm sm:text-base lg:text-lg font-bold text-white">
-              {t.offerBanner.text}
+              {t.offerBanner.textBeforeAmount}{' '}
+              <span className="text-red-500 font-extrabold">{t.offerBanner.amount}</span>{' '}
+              {t.offerBanner.textAfterAmount}
             </span>
           </div>
 
