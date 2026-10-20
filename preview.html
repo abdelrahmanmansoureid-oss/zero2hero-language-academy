@@ -579,11 +579,13 @@
                       <span>{t.hero.badge}</span>
                     </div>
 
-                    <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-[#0B2239] leading-[1.15] tracking-tight">
-                      {t.hero.titleStart}{' '}
-                      <span className="inline-block px-3 py-0.5 rounded-xl bg-[#0B2239] text-white">ZERO</span>{' '}
-                      {t.hero.titleTo}{' '}
-                      <span className="inline-block px-3 py-0.5 rounded-xl bg-[#D89F26] text-white">HERO</span>
+                    <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-[#0B2239] leading-tight tracking-tight">
+                      <span className="block mb-3">{t.hero.titleStart}</span>
+                      <span className="inline-flex flex-wrap items-center gap-2.5 sm:gap-3">
+                        <span className="inline-block px-3.5 py-1 rounded-xl bg-[#0B2239] text-white">ZERO</span>
+                        <span>{t.hero.titleTo}</span>
+                        <span className="inline-block px-3.5 py-1 rounded-xl bg-[#D89F26] text-white">HERO</span>
+                      </span>
                     </h1>
 
                     <p className="text-base sm:text-lg text-slate-600 leading-relaxed max-w-2xl">
