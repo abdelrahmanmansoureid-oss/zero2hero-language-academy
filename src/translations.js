@@ -31,7 +31,7 @@ export const translations = {
       titleStart: 'Master English From',
       titleTo: 'To',
       subtitle:
-        'Transform your English fluency with ZERO2HERO Language Academy. Whether you join us in-person at our Loran campus in Alexandria or attend live interactive online sessions from anywhere, our certified instructors guide you step-by-step from beginner to confident speaker.',
+        'Speak English fluently with certified instructors—in-person at our Loran campus in Alexandria or live online from anywhere.',
       ctaPrimary: 'Book Placement Test on WhatsApp',
       ctaSecondary: 'Explore Courses & Prices',
       stats: [
@@ -251,7 +251,7 @@ export const translations = {
       titleStart: 'أتقن اللغة الإنجليزية من',
       titleTo: 'إلى',
       subtitle:
-        'طوّر طلاقتك في اللغة الإنجليزية مع أكاديمية ZERO2HERO. سواء كنت تفضل الدراسة الحضورية في فرعنا بلوران في الإسكندرية أو المحاضرات التفاعلية المباشرة أونلاين من أي مكان، مدربونا المعتمدون يرافقونك خطوة بخطوة من الصفر وحتى الاحتراف.',
+        'تعلّم الإنجليزية بطلاقة مع مدربين معتمدين، حضورياً في فرعنا بلوران في الإسكندرية أو أونلاين مباشر من أي مكان.',
       ctaPrimary: 'احجز اختبار تحديد المستوى عبر واتساب',
       ctaSecondary: 'استكشف الكورسات والأسعار',
       stats: [
