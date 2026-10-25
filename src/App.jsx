@@ -419,9 +419,9 @@ export default function App() {
       </section>
 
       {/* Online & Offline Study Modes Section */}
-      <section id="modes" className="py-20 bg-slate-50 border-y border-slate-200/70">
+      <section id="modes" className="py-14 bg-slate-50 border-y border-slate-200/70">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center max-w-3xl mx-auto mb-14">
+          <div className="text-center max-w-3xl mx-auto">
             <span className="inline-block px-3.5 py-1 rounded-full bg-[#FDF6E7] text-[#B98519] font-extrabold text-xs tracking-wider uppercase mb-3">
               {t.modes.tag}
             </span>
@@ -429,95 +429,6 @@ export default function App() {
               {t.modes.title}
             </h2>
             <p className="mt-3 text-slate-600 text-base sm:text-lg">{t.modes.subtitle}</p>
-          </div>
-
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-            {/* Offline Campus Card */}
-            <div className="bg-white rounded-3xl p-8 sm:p-10 border-2 border-slate-200/80 shadow-md hover:shadow-xl transition-all flex flex-col justify-between">
-              <div>
-                <div className="flex items-center justify-between gap-4 mb-6">
-                  <span className="px-3.5 py-1.5 rounded-full bg-[#0B2239] text-white text-xs font-bold">
-                    {t.modes.offline.badge}
-                  </span>
-                  <div className="w-12 h-12 rounded-2xl bg-slate-100 text-[#0B2239] flex items-center justify-center">
-                    <svg className="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                      <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
-                      <polyline points="9 22 9 12 15 12 15 22" />
-                    </svg>
-                  </div>
-                </div>
-
-                <h3 className="text-2xl font-extrabold text-[#0B2239] mb-3">
-                  {t.modes.offline.title}
-                </h3>
-                <p className="text-slate-600 leading-relaxed mb-6">{t.modes.offline.desc}</p>
-
-                <ul className="space-y-3 mb-8">
-                  {t.modes.offline.features.map((feat, i) => (
-                    <li key={i} className="flex items-start gap-3 text-sm sm:text-base text-slate-700 font-medium">
-                      <span className="w-5 h-5 rounded-full bg-[#0B2239]/10 text-[#0B2239] flex items-center justify-center text-xs font-bold shrink-0 mt-0.5">
-                        ✓
-                      </span>
-                      <span>{feat}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-
-              <a
-                href={buildWhatsAppUrl(t.modes.offline.waMessage)}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="w-full inline-flex items-center justify-center gap-2 py-4 px-6 rounded-2xl bg-[#0B2239] hover:bg-[#133454] text-white font-bold transition-all shadow-md"
-              >
-                <WhatsAppIcon className="w-5 h-5 text-[#25D366]" />
-                <span>{t.modes.offline.cta}</span>
-              </a>
-            </div>
-
-            {/* Live Online Card */}
-            <div className="bg-white rounded-3xl p-8 sm:p-10 border-2 border-[#D89F26] shadow-md hover:shadow-xl transition-all flex flex-col justify-between relative">
-              <div>
-                <div className="flex items-center justify-between gap-4 mb-6">
-                  <span className="px-3.5 py-1.5 rounded-full bg-[#FDF6E7] text-[#B98519] border border-[#D89F26]/40 text-xs font-bold">
-                    {t.modes.online.badge}
-                  </span>
-                  <div className="w-12 h-12 rounded-2xl bg-[#FDF6E7] text-[#D89F26] flex items-center justify-center">
-                    <svg className="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                      <rect x="2" y="3" width="20" height="14" rx="2" ry="2" />
-                      <line x1="8" y1="21" x2="16" y2="21" />
-                      <line x1="12" y1="17" x2="12" y2="21" />
-                    </svg>
-                  </div>
-                </div>
-
-                <h3 className="text-2xl font-extrabold text-[#0B2239] mb-3">
-                  {t.modes.online.title}
-                </h3>
-                <p className="text-slate-600 leading-relaxed mb-6">{t.modes.online.desc}</p>
-
-                <ul className="space-y-3 mb-8">
-                  {t.modes.online.features.map((feat, i) => (
-                    <li key={i} className="flex items-start gap-3 text-sm sm:text-base text-slate-700 font-medium">
-                      <span className="w-5 h-5 rounded-full bg-[#FDF6E7] text-[#B98519] flex items-center justify-center text-xs font-bold shrink-0 mt-0.5">
-                        ✓
-                      </span>
-                      <span>{feat}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-
-              <a
-                href={buildWhatsAppUrl(t.modes.online.waMessage)}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="w-full inline-flex items-center justify-center gap-2 py-4 px-6 rounded-2xl bg-[#D89F26] hover:bg-[#B98519] text-white font-bold transition-all shadow-md"
-              >
-                <WhatsAppIcon className="w-5 h-5" />
-                <span>{t.modes.online.cta}</span>
-              </a>
-            </div>
           </div>
         </div>
       </section>
