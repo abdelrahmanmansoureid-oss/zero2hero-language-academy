@@ -5,6 +5,7 @@ const WHATSAPP_NUMBER = '201041161062';
 const WHATSAPP_DISPLAY = '+20 104 116 1062';
 const FACEBOOK_URL =
   'https://www.facebook.com/profile.php?id=61595698253351&sk=directory_contact_info';
+const INSTAGRAM_URL = 'https://www.instagram.com/zero2hero.pro/';
 const GOOGLE_MAPS_URL =
   'https://www.google.com/maps/search/?api=1&query=696+El+Horreya+Rd,+El+Fairouza+Bldg,+Loran,+Alexandria+21532';
 
@@ -55,6 +56,16 @@ function FacebookIcon({ className = 'w-5 h-5' }) {
   return (
     <svg className={className} viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
       <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z" />
+    </svg>
+  );
+}
+
+function InstagramIcon({ className = 'w-5 h-5' }) {
+  return (
+    <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+      <rect x="2" y="2" width="20" height="20" rx="5" ry="5" />
+      <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
+      <line x1="17.5" y1="6.5" x2="17.51" y2="6.5" />
     </svg>
   );
 }
@@ -866,6 +877,17 @@ export default function App() {
                   >
                     <FacebookIcon className="w-4 h-4 text-[#1877F2] shrink-0" />
                     <span>{t.topbarFb}</span>
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href={INSTAGRAM_URL}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-2 font-bold text-[#E1306C] hover:underline"
+                  >
+                    <InstagramIcon className="w-4 h-4 text-[#E1306C] shrink-0" />
+                    <span>{t.topbarIg}</span>
                   </a>
                 </li>
               </ul>

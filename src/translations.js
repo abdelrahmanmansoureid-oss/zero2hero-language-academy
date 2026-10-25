@@ -5,6 +5,7 @@ export const translations = {
     brandSubtitle: 'LANGUAGE ACADEMY',
     topbarAddress: '696 El Horreya Rd., El Fairouza Bldg., Loran, Alexandria 21532',
     topbarFb: 'Facebook Page',
+    topbarIg: 'Instagram Page',
     offerBanner: {
       badge: 'LIMITED OFFER',
       textBeforeAmount: 'Save',
@@ -224,6 +225,7 @@ export const translations = {
     brandSubtitle: 'أكاديمية اللغات',
     topbarAddress: '٦٩٦ طريق الحرية، عمارة الفيروزة، لوران، الإسكندرية 21532',
     topbarFb: 'صفحة فيسبوك',
+    topbarIg: 'صفحة إنستغرام',
     offerBanner: {
       badge: 'عرض محدود',
       textBeforeAmount: 'خصم',
