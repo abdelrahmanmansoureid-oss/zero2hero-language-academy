@@ -5,8 +5,8 @@ Official website for **ZERO2HERO Language Academy** built with **React.js**, **V
 ## Academy Details
 - **Academy Name:** ZERO2HERO Language Academy
 - **Specialization:** English Language Courses (General English, Conversation & Phonetics, Business English & Interview Prep, IELTS Preparation, Kids & Teens, VIP 1-on-1)
-- **Study Modes:** Offline (In-Person at Loran Campus) & Live Online
-- **Location:** 696 El Horreya Rd., El Fairouza Bldg., Loran, Alexandria Governorate 21532
+- **Study Modes:** Offline (In-Person at Sidi Gaber Campus) & Live Online
+- **Location:** [215 Port Said St, Sidi Gabir, Sidi Gaber, Alexandria Governorate 21523](https://maps.app.goo.gl/WE4afSYTqY2XqNod9)
 - **WhatsApp:** [+20 104 116 1062](https://wa.me/201041161062)
 - **Facebook:** [ZERO2HERO Language Academy Facebook Page](https://www.facebook.com/profile.php?id=61595698253351&sk=directory_contact_info)
 

@@ -6,8 +6,7 @@ const WHATSAPP_DISPLAY = '+20 104 116 1062';
 const FACEBOOK_URL =
   'https://www.facebook.com/profile.php?id=61595698253351&sk=directory_contact_info';
 const INSTAGRAM_URL = 'https://www.instagram.com/zero2hero.pro/';
-const GOOGLE_MAPS_URL =
-  'https://www.google.com/maps/search/?api=1&query=696+El+Horreya+Rd,+El+Fairouza+Bldg,+Loran,+Alexandria+21532';
+const GOOGLE_MAPS_URL = 'https://maps.app.goo.gl/WE4afSYTqY2XqNod9';
 
 // 6 days, 11 hours, 23 minutes in seconds
 const INITIAL_COUNTDOWN_SECONDS = 6 * 86400 + 11 * 3600 + 23 * 60;
@@ -782,8 +781,8 @@ export default function App() {
             {/* Embedded Google Map */}
             <div className="lg:col-span-7 bg-white rounded-3xl overflow-hidden border border-slate-200 shadow-sm min-h-[380px]">
               <iframe
-                title="ZERO2HERO Language Academy - 696 El Horreya Rd, Loran, Alexandria"
-                src="https://www.google.com/maps?q=696+El+Horreya+Rd,+Loran,+Alexandria,+Egypt&output=embed"
+                title="ZERO2HERO Language Academy - 215 Port Said St, Sidi Gabir, Sidi Gaber, Alexandria Governorate 21523"
+                src="https://www.google.com/maps?q=215+Port+Said+St,+Sidi+Gaber,+Alexandria,+Egypt&output=embed"
                 className="w-full h-full min-h-[380px] border-0"
                 loading="lazy"
                 allowFullScreen

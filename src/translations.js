@@ -3,7 +3,7 @@ export const translations = {
     dir: 'ltr',
     langToggleLabel: 'العربية',
     brandSubtitle: 'LANGUAGE ACADEMY',
-    topbarAddress: '696 El Horreya Rd., El Fairouza Bldg., Loran, Alexandria 21532',
+    topbarAddress: '215 Port Said St, Sidi Gabir, Sidi Gaber, Alexandria Governorate 21523',
     topbarFb: 'Facebook Page',
     topbarIg: 'Instagram Page',
     offerBanner: {
@@ -31,7 +31,7 @@ export const translations = {
       titleStart: 'Master English From',
       titleTo: 'To',
       subtitle:
-        'Speak English fluently with certified instructors—in-person at our Loran campus in Alexandria or live online from anywhere.',
+        'Speak English fluently with certified instructors—in-person at our Sidi Gaber campus in Alexandria or live online from anywhere.',
       ctaPrimary: 'Book Placement Test on WhatsApp',
       ctaSecondary: 'Explore Courses & Prices',
       stats: [
@@ -41,7 +41,7 @@ export const translations = {
       ],
       chipTopTitle: 'Certified Instructors',
       chipTopSub: 'Real-World English Fluency',
-      chipBottomTitle: 'Loran Campus & Live Online',
+      chipBottomTitle: 'Sidi Gaber Campus & Live Online',
       chipBottomSub: 'Morning & Evening Batches',
     },
     modes: {
@@ -50,18 +50,18 @@ export const translations = {
       subtitle:
         'Experience the exact same interactive curriculum, speaking practice, and personal feedback in the format that suits your schedule best.',
       offline: {
-        badge: 'In-Person Campus • Loran, Alexandria',
+        badge: 'In-Person Campus • Sidi Gaber, Alexandria',
         title: 'Offline Campus Courses',
-        desc: 'Join face-to-face classes at our air-conditioned, modern classrooms in Loran. Practice through real-time group conversations, role-plays, and interactive activities.',
+        desc: 'Join face-to-face classes at our air-conditioned, modern classrooms in Sidi Gaber. Practice through real-time group conversations, role-plays, and interactive activities.',
         features: [
-          'Located at 696 El Horreya Rd., El Fairouza Bldg., Loran',
+          'Located at 215 Port Said St, Sidi Gabir, Sidi Gaber, Alexandria',
           'Small group sizes for maximum individual speaking time',
           'Weekly in-person English Conversation Clubs',
           'Printed & digital study materials + accredited certificate',
         ],
         cta: 'Ask About Offline Batches',
         waMessage:
-          'Hello ZERO2HERO Language Academy! I would like to ask about your Offline (In-Person) English courses in Loran, Alexandria.',
+          'Hello ZERO2HERO Language Academy! I would like to ask about your Offline (In-Person) English courses in Sidi Gaber, Alexandria.',
       },
       online: {
         badge: 'Interactive Virtual Classes • Worldwide',
@@ -161,7 +161,7 @@ export const translations = {
       namePlaceholder: 'Enter your name',
       modeLabel: 'Preferred Study Mode',
       modes: [
-        'Offline at Loran Campus (Alexandria)',
+        'Offline at Sidi Gaber Campus (Alexandria)',
         'Live Online',
       ],
       goalLabel: 'Choose Your Course / Bundle',
@@ -188,7 +188,7 @@ export const translations = {
         },
         {
           title: 'Prime Location + Online Freedom',
-          desc: 'Conveniently located on El Horreya Road in Loran, Alexandria, alongside seamless live online classes accessible from anywhere.',
+          desc: 'Conveniently located at 215 Port Said St in Sidi Gaber, Alexandria, alongside seamless live online classes accessible from anywhere.',
         },
         {
           title: 'Placement Test & Progress Tracking',
@@ -200,9 +200,9 @@ export const translations = {
       tag: 'VISIT OR CONTACT US',
       title: 'Location & Direct Channels',
       subtitle:
-        'Visit us at our Loran branch in Alexandria or reach out directly on WhatsApp and Facebook.',
+        'Visit us at our Sidi Gaber branch in Alexandria or reach out directly on WhatsApp and Facebook.',
       addressTitle: 'Alexandria Campus Address',
-      addressText: '696 El Horreya Rd., El Fairouza Bldg., Loran, Alexandria Governorate 21532',
+      addressText: '215 Port Said St, Sidi Gabir, Sidi Gaber, Alexandria Governorate 21523',
       openMaps: 'Get Directions on Google Maps →',
       waTitle: 'WhatsApp & Phone',
       waAction: 'Start WhatsApp Chat Now →',
@@ -212,7 +212,7 @@ export const translations = {
     },
     footer: {
       about:
-        'ZERO2HERO Language Academy is your premier destination for Offline and Online English courses in Loran, Alexandria and beyond.',
+        'ZERO2HERO Language Academy is your premier destination for Offline and Online English courses in Sidi Gaber, Alexandria and beyond.',
       quickLinks: 'Quick Navigation',
       contactTitle: 'Contact Information',
       rights: 'All rights reserved.',
@@ -223,7 +223,7 @@ export const translations = {
     dir: 'rtl',
     langToggleLabel: 'English',
     brandSubtitle: 'أكاديمية اللغات',
-    topbarAddress: '٦٩٦ طريق الحرية، عمارة الفيروزة، لوران، الإسكندرية 21532',
+    topbarAddress: '215 شارع بورسعيد، سيدي جابر، محافظة الإسكندرية 21523',
     topbarFb: 'صفحة فيسبوك',
     topbarIg: 'صفحة إنستغرام',
     offerBanner: {
@@ -251,7 +251,7 @@ export const translations = {
       titleStart: 'أتقن اللغة الإنجليزية من',
       titleTo: 'إلى',
       subtitle:
-        'تعلّم الإنجليزية بطلاقة مع مدربين معتمدين، حضورياً في فرعنا بلوران في الإسكندرية أو أونلاين مباشر من أي مكان.',
+        'تعلّم الإنجليزية بطلاقة مع مدربين معتمدين، حضورياً في فرعنا بسيدي جابر في الإسكندرية أو أونلاين مباشر من أي مكان.',
       ctaPrimary: 'احجز اختبار تحديد المستوى عبر واتساب',
       ctaSecondary: 'استكشف الكورسات والأسعار',
       stats: [
@@ -261,7 +261,7 @@ export const translations = {
       ],
       chipTopTitle: 'مدربون معتمدون',
       chipTopSub: 'طلاقة وممارسة حقيقية',
-      chipBottomTitle: 'فرع لوران + بث مباشر أونلاين',
+      chipBottomTitle: 'فرع سيدي جابر + بث مباشر أونلاين',
       chipBottomSub: 'مواعيد صباحية ومسائية مرنة',
     },
     modes: {
@@ -270,18 +270,18 @@ export const translations = {
       subtitle:
         'نفس المنهج التفاعلي القوي وممارسة المحادثة والمتابعة الشخصية بالطريقة التي تناسب جدولك اليومي.',
       offline: {
-        badge: 'حضوري في المقر • لوران، الإسكندرية',
+        badge: 'حضوري في المقر • سيدي جابر، الإسكندرية',
         title: 'كورسات أوفلاين (حضوري بالمقر)',
-        desc: 'احضر محاضراتك وجهاً لوجه في قاعاتنا المجهزة الحديثة في لوران بالإسكندرية، وتفاعل مباشرة مع زملائك ومدربك من خلال ورش المحادثة والأنشطة العملية.',
+        desc: 'احضر محاضراتك وجهاً لوجه في قاعاتنا المجهزة الحديثة في سيدي جابر بالإسكندرية، وتفاعل مباشرة مع زملائك ومدربك من خلال ورش المحادثة والأنشطة العملية.',
         features: [
-          'العنوان: 696 طريق الحرية، عمارة الفيروزة، لوران، الإسكندرية',
+          'العنوان: 215 شارع بورسعيد، سيدي جابر، محافظة الإسكندرية 21523',
           'مجموعات صغيرة لضمان أكبر وقت تحدث لكل طالب',
           'نادي محادثة أسبوعي لتطوير الطلاقة والثقة',
           'مواد علمية مطبوعة ورقمية + شهادة معتمدة من الأكاديمية',
         ],
         cta: 'اسأل عن مواعيد الأوفلاين',
         waMessage:
-          'مرحباً أكاديمية ZERO2HERO! أرغب في الاستفسار عن كورسات اللغة الإنجليزية الحضورية (Offline) في فرع لوران بالإسكندرية.',
+          'مرحباً أكاديمية ZERO2HERO! أرغب في الاستفسار عن كورسات اللغة الإنجليزية الحضورية (Offline) في فرع سيدي جابر بالإسكندرية.',
       },
       online: {
         badge: 'فصول افتراضية مباشرة • من أي مكان',
@@ -381,7 +381,7 @@ export const translations = {
       namePlaceholder: 'اكتب اسمك هنا',
       modeLabel: 'نظام الدراسة المفضل',
       modes: [
-        'أوفلاين (حضوري في فرع لوران - الإسكندرية)',
+        'أوفلاين (حضوري في فرع سيدي جابر - الإسكندرية)',
         'أونلاين (بث مباشر تفاعلي)',
       ],
       goalLabel: 'اختر الكورس أو الباقة',
@@ -407,8 +407,8 @@ export const translations = {
           desc: 'نخبة من المحاضرين المتخصصين في تدريس اللغة الإنجليزية بأساليب تفاعلية حديثة تضمن تطوراً ملموساً وسريعاً.',
         },
         {
-          title: 'موقع متميز في لوران + مرونة الأونلاين',
-          desc: 'فرعنا في قلب الإسكندرية على طريق الحرية بلوران، بالإضافة إلى فصول افتراضية مباشرة تتيح لك التعلم من أي مكان.',
+          title: 'موقع متميز في سيدي جابر + مرونة الأونلاين',
+          desc: 'فرعنا في قلب الإسكندرية بشارع بورسعيد في سيدي جابر، بالإضافة إلى فصول افتراضية مباشرة تتيح لك التعلم من أي مكان.',
         },
         {
           title: 'تحديد مستوى دقيق ومتابعة مستمرة',
@@ -420,9 +420,9 @@ export const translations = {
       tag: 'تفضل بزيارتنا أو تواصل معنا',
       title: 'موقع الأكاديمية وقنوات التواصل',
       subtitle:
-        'يسعدنا استقبالكم في فرعنا بلوران في الإسكندرية أو الرد على استفساراتكم فوراً عبر واتساب وفيسبوك.',
+        'يسعدنا استقبالكم في فرعنا بسيدي جابر في الإسكندرية أو الرد على استفساراتكم فوراً عبر واتساب وفيسبوك.',
       addressTitle: 'عنوان فرع الإسكندرية',
-      addressText: '696 طريق الحرية، عمارة الفيروزة، لوران، محافظة الإسكندرية 21532',
+      addressText: '215 شارع بورسعيد، سيدي جابر، محافظة الإسكندرية 21523',
       openMaps: 'افتح الموقع على خرائط جوجل ←',
       waTitle: 'واتساب والهاتف المباشر',
       waAction: 'ابدأ محادثة واتساب الآن ←',
@@ -432,7 +432,7 @@ export const translations = {
     },
     footer: {
       about:
-        'أكاديمية ZERO2HERO للغات هي وجهتك الأولى لتعلم وإتقان اللغة الإنجليزية أونلاين وأوفلاين في لوران بالإسكندرية وفي كل مكان.',
+        'أكاديمية ZERO2HERO للغات هي وجهتك الأولى لتعلم وإتقان اللغة الإنجليزية أونلاين وأوفلاين في سيدي جابر بالإسكندرية وفي كل مكان.',
       quickLinks: 'روابط سريعة',
       contactTitle: 'بيانات التواصل',
       rights: 'جميع الحقوق محفوظة.',
