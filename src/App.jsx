@@ -5,7 +5,7 @@ const WHATSAPP_NUMBER = '201041161062';
 const WHATSAPP_DISPLAY = '+20 104 116 1062';
 const FACEBOOK_URL =
   'https://www.facebook.com/profile.php?id=61595698253351&sk=directory_contact_info';
-const INSTAGRAM_URL = 'https://www.instagram.com/zero2hero.pro/';
+const INSTAGRAM_URL = 'https://www.instagram.com/zero2hero.insta/';
 const GOOGLE_MAPS_URL = 'https://maps.app.goo.gl/WE4afSYTqY2XqNod9';
 
 // 6 days, 11 hours, 23 minutes in seconds
